@@ -1,0 +1,2932 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "This API is currently provisional and will change. Many of the future changes will be centered around getting the API more standardized. For example, several methods have the non-standard get(or other parameter names) in the service path, there are capitalization inconsistancies and response object/error inconsistencies<ul> <li><a href=\"#/machine\">machine:</a> This service allows you to perform operations unique to the Host itself. The category of operations include serial port enumeration, wifi management, support diagnostics, display enumeration, slicing profile enumeration, printable file type enumeration, machine configuration enumeration, network enumeration, staging automatic updates, supported font enumeration and font uploads.</li> <li><a href=\"#/printers\">printers:</a> This service allows you to manage all printers in Phontonic 3D.</li> <li><a href=\"#/settings\">settings:</a> This service allows a client to manage all of the global settings in Photonic 3D. It is designed as a light wrapper for HostProperties that are defined in <b class=\"code\">config.properties</b></li> <li><a href=\"#/printJobs\">printJobs:</a> This service allows you to view the progress of all currently printing jobs and all printjobs that have already been attempted.</li> <li><a href=\"#/printables\">printables:</a> This service allows you to manage all printable files in Phontonic3d. <li><a href=\"#/media\">media:</a> This service performs all media based activities related to imaging, live streaming and video. Currently progressive download of video is performed in the <b class=\"code\">org.area515.resinprinter.stream.ProgressiveDownloadServlet</b>. Eventually those capabilities will be moved to this service once a permanent oauth model has been put into place.</ul>",
+    "version" : "0.0.298",
+    "title" : "Photonic3D REST API",
+    "contact" : {
+      "name" : "Wes Gilster",
+      "url" : "http://www.photonic3d.com",
+      "email" : "wesgilster@gmail.com"
+    }
+  },
+  "basePath" : "/services",
+  "tags" : [ {
+    "name" : "printables"
+  }, {
+    "name" : "customizers"
+  }, {
+    "name" : "settings"
+  }, {
+    "name" : "printers"
+  }, {
+    "name" : "machine"
+  }, {
+    "name" : "printJobs"
+  }, {
+    "name" : "media"
+  } ],
+  "schemes" : [ "http", "https" ],
+  "paths" : {
+    "/customizers/createTemplateCustomizer/{printableName}" : {
+      "get" : {
+        "tags" : [ "customizers" ],
+        "summary" : "Creates but doesn't save a Customizer that has all of the proper support capabilities(booleans) already setup based upon the Printable name that was sent to this method.",
+        "description" : "",
+        "operationId" : "createTemplateCustomizer",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "printableName",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Customizer"
+            }
+          }
+        }
+      }
+    },
+    "/customizers/delete/{customizerName}" : {
+      "delete" : {
+        "tags" : [ "customizers" ],
+        "summary" : "Deletes a Customizer from persistent storage.",
+        "description" : "",
+        "operationId" : "deleteCustomizer",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "customizerName",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/MachineResponse"
+            }
+          }
+        }
+      }
+    },
+    "/customizers/getByPrintableName/{printableName}" : {
+      "get" : {
+        "tags" : [ "customizers" ],
+        "summary" : "Retrieves all Customizers that have been created for a given Printable.",
+        "description" : "",
+        "operationId" : "getCustomizersByPrintableName",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "printableName",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Customizer"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/customizers/list" : {
+      "get" : {
+        "tags" : [ "customizers" ],
+        "summary" : "Retrieves all Customizers",
+        "description" : "",
+        "operationId" : "getCustomizersByPrintableName",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Customizer"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/customizers/renderSliceImage/{customizerName}/{currentSlice}" : {
+      "get" : {
+        "tags" : [ "customizers" ],
+        "summary" : "Renders any given slice based on the customizer and current slice number. This method assumes that the customizer has already been saved.",
+        "description" : "",
+        "operationId" : "renderImage",
+        "produces" : [ "image/png" ],
+        "parameters" : [ {
+          "name" : "customizerName",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "currentSlice",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/StreamingOutput"
+            }
+          }
+        }
+      }
+    },
+    "/customizers/save" : {
+      "put" : {
+        "tags" : [ "customizers" ],
+        "summary" : "Saves a Customizer into persistent storage.",
+        "description" : "",
+        "operationId" : "saveCustomizer",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/Customizer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/MachineResponse"
+            }
+          }
+        }
+      }
+    },
+    "/customizers/testRenderSliceImage/{currentSlice}" : {
+      "get" : {
+        "tags" : [ "customizers" ],
+        "summary" : "Renders any given slice based on the provided Customizer and current slice number.",
+        "description" : "",
+        "operationId" : "testRenderImage",
+        "produces" : [ "image/png" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/Customizer"
+          }
+        }, {
+          "name" : "currentSlice",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/StreamingOutput"
+            }
+          }
+        }
+      }
+    },
+    "/machine/cancelNetworkRestartProcess" : {
+      "post" : {
+        "tags" : [ "machine" ],
+        "summary" : "Cancels the network restart operation that could be in progress. This assumes that there is already a startNetworkRestartProcess that is currently in progress",
+        "description" : "",
+        "operationId" : "cancelRestartOperation",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Success"
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/machine/downloadDiagnostic/{zipName}" : {
+      "get" : {
+        "tags" : [ "machine" ],
+        "summary" : "Perform a diagnostic dump that contains system properties, log4j properties, startup logs, cwh logs, configuration properties, stacktrace, xml representation of printers and photonic3d log then perform a file download of the zip file.",
+        "description" : "",
+        "operationId" : "downloadSupportLogs",
+        "produces" : [ "application/octet-stream" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Success"
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/machine/executeDiagnostic" : {
+      "get" : {
+        "tags" : [ "machine" ],
+        "summary" : "Perform a diagnostic dump that contains system properties, log4j properties, startup logs, cwh logs, configuration properties, stacktrace, xml representation of printers and photonic3d log then perform an email of the zip file.",
+        "description" : "",
+        "operationId" : "emailSupportLogs",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Success"
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/machine/graphicsDisplays/list" : {
+      "get" : {
+        "tags" : [ "machine" ],
+        "summary" : "Enumerates the list of graphics displays that are available on the Photonic 3D host.",
+        "description" : "",
+        "operationId" : "getDisplays",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Success"
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/machine/machineConfigurations/list" : {
+      "get" : {
+        "tags" : [ "machine" ],
+        "summary" : "Enumerates the list of machine configurations that are available on the Photonic 3D host.",
+        "description" : "",
+        "operationId" : "getMachineConfigurations",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Success"
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/machine/serialPorts/list" : {
+      "get" : {
+        "tags" : [ "machine" ],
+        "summary" : "Enumerates the list of serial ports available on the Photonic 3D host.",
+        "description" : "",
+        "operationId" : "getSerialPorts",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Success"
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/machine/slicingProfiles/list" : {
+      "get" : {
+        "tags" : [ "machine" ],
+        "summary" : "Enumerates the list of slicing profiles that are available on the Photonic 3D host.",
+        "description" : "",
+        "operationId" : "getSlicingProfiles",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Success"
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/machine/stageOfflineInstall" : {
+      "post" : {
+        "tags" : [ "machine" ],
+        "summary" : "Upload a zip file that contains a Photonic 3d upgrade. The next time Phontonic 3d is restarted, this upgrade will be performed..",
+        "description" : "",
+        "operationId" : "stageOfflineInstall",
+        "consumes" : [ "multipart/form-data" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/MultipartFormDataInput"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success"
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/machine/startNetworkRestartProcess/{timeoutMilliseconds}/{millisecondsBetweenPings}/{maxUnmatchedPings}" : {
+      "post" : {
+        "tags" : [ "machine" ],
+        "summary" : "This process ensures that the user unplugs the network cable in order to complete the network reconfiguration process.Since it's not immediately obvious how to notify a client after the only network link to that client has been torn down, Idescribed that process below:1. The Restful client should first reconfigure the WIFI AP of their choice with the connectToWifiSSID() method.2. The Restful client opens a websocket connection to /hostNotification url.3. Once that step is successful, this method should be called immediately afterwards.4. If this method returns false, the NetworkInterface was not found and the configuration process ENDS HERE.5. If this method is able to return true, it means this method found the proper NetworkInterface managing this HTTP socket\tconnection.6. The NetworkInterface will be monitored for a disruption in network connectivity and Websocket ping events will start being \tproduced from this host at the interval of \"millisecondsBetweenPings\".7. Once the Restful client receives it's first ping event, it should ask the user to unplug the ethernet cable.8. The user should then either cancel the operation, or unplug the ethernet cable.9. If the user cancels the operation, the Restful client needs to call cancelRestartOperation() to notify the server that it should should\tnot continue to wait for the user to unplug the cable.10. If the user unplugs the ethernet cable, the proper NetworkInterface(discovered in step 4) is found to be down and this \tHost(and it's network) are restarted.11. Since this Host is now in the middle of restarting, it isn't able to send WebSocket ping events any longer.12. The Restful client then discovers that ping events are no longer coming and it's timeout period hasn't been exhausted, \tso it let's the user know that they should shut down the Restful client(probably a browser) and restart the printer with the Multicast client.13. The Multicast client eventually finds the Raspberry Pi on the new Wifi IP address and we are back in business...",
+        "description" : "",
+        "operationId" : "restartHostAfterNetworkCableUnplugged",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "timeoutMilliseconds",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "name" : "millisecondsBetweenPings",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "name" : "maxUnmatchedPings",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success"
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/machine/supportedFileTypes" : {
+      "get" : {
+        "tags" : [ "machine" ],
+        "summary" : "Retrieves all of the supported file types that are returned from the each of the org.area515.resinprinter.job.PrintFileProcessor.getFileExtensions().PrintFileProcessors are registered in the <b class=\"code\">config.properties</b> under the <b class=\"code\">notify.[classname.of.PrintFileProcessor.implementation]=true</b>",
+        "description" : "",
+        "operationId" : "getSupportedFileTypes",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Success"
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/machine/supportedFontNames" : {
+      "get" : {
+        "tags" : [ "machine" ],
+        "summary" : "Upload TrueType fonts to be used with 2D file processing.",
+        "description" : "",
+        "operationId" : "getSupportedFontFamilies",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Success"
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/machine/uploadFont" : {
+      "post" : {
+        "tags" : [ "machine" ],
+        "summary" : "Upload TrueType fonts to be used with 2D file processing settings.",
+        "description" : "",
+        "operationId" : "uploadFont",
+        "consumes" : [ "application/octet-stream" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/InputStream"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success"
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/machine/wirelessConnect" : {
+      "put" : {
+        "tags" : [ "machine" ],
+        "summary" : "Connects to the supplied wireless SSID using the provided passphrase and Wireless settings.",
+        "description" : "",
+        "operationId" : "connectToWifiSSID",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/WirelessNetwork"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success"
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/machine/wirelessNetworks/list" : {
+      "get" : {
+        "tags" : [ "machine" ],
+        "summary" : "Enumerates the list of WirelessNetworks that are currently in range for each network interface available on the host.",
+        "description" : "",
+        "operationId" : "getWirelessNetworks",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Success"
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/media/startlivemjpegstream/{printerName}/clientid/{clientId}/x/{x}/y/{y}" : {
+      "get" : {
+        "tags" : [ "media" ],
+        "summary" : "Starts a live mjpeg stream using the settings available in config.properties for key imagingCommand=[jsonFormattedNativeOSCommand]. clientId refers can any unique id that a client would like to create. This clientId is later sent to the stoplivemjpegstream when it wants to notify the host server that a stream is no longer needed.",
+        "description" : "",
+        "operationId" : "startLiveStream",
+        "produces" : [ "multipart/x-mixed-replace; boundary=--EndOfJPEG" ],
+        "parameters" : [ {
+          "name" : "printerName",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "clientId",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "x",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "y",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success"
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/media/startrecordvideo/{printerName}/x/{x}/y/{y}" : {
+      "get" : {
+        "tags" : [ "media" ],
+        "summary" : "Starts recording video with the supplied(width:x, height:y) for the printer specified using the settings specified in the config.properties streamingCommand=[jsonFormattedNativeOSCommand]",
+        "description" : "",
+        "operationId" : "startVideo",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "printerName",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "x",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "y",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success"
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/media/stoplivemjpegstream/{printerName}/clientid/{clientId}" : {
+      "get" : {
+        "tags" : [ "media" ],
+        "summary" : "Stops a live mjpeg stream. The clientId that was used to start the original stream should be used to stop this stream.",
+        "description" : "",
+        "operationId" : "stopLiveStream",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "clientId",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success"
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/media/stoprecordvideo/{printerName}" : {
+      "get" : {
+        "tags" : [ "media" ],
+        "summary" : "Stops recording video for the printer specified.",
+        "description" : "",
+        "operationId" : "stopVideo",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "printerName",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success"
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/media/takesnapshot/{printerName}/x/{x}/y/{y}" : {
+      "get" : {
+        "tags" : [ "media" ],
+        "summary" : "Takes a snapshot of the current build setup in config.properties for imagingCommand=[jsonFormattedNativeOSCommand]",
+        "description" : "",
+        "operationId" : "takePicture",
+        "produces" : [ "image/jpg" ],
+        "parameters" : [ {
+          "name" : "printerName",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "x",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "y",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success"
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/printJobs/currentSliceImage/{jobId}" : {
+      "get" : {
+        "tags" : [ "printJobs" ],
+        "summary" : "Returns the image that is currently being exposed for the PrintJob designated by the specified job id.",
+        "description" : "",
+        "operationId" : "getImage",
+        "produces" : [ "image/png" ],
+        "parameters" : [ {
+          "name" : "jobId",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success"
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/printJobs/delete/{jobId}" : {
+      "get" : {
+        "tags" : [ "printJobs" ],
+        "summary" : "Deletes the PrintJob designated by the specified job id.",
+        "description" : "",
+        "operationId" : "delete",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "jobId",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success"
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/printJobs/geometry/{jobId}" : {
+      "get" : {
+        "tags" : [ "printJobs" ],
+        "summary" : "Retrieves the geometry data associated with the PrintJob designated by the specified job id. The geometry data returned by this method is highly dependant upon the org.area515.resinprinter.job.PrintFileProcessor<G> that took responsibility for the printable file that this PrintJob is printing. ",
+        "description" : "",
+        "operationId" : "getGeometry",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "jobId",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success"
+          },
+          "400" : {
+            "description" : "(A job manager problem)"
+          }
+        }
+      }
+    },
+    "/printJobs/geometryErrors/{jobId}" : {
+      "get" : {
+        "tags" : [ "printJobs" ],
+        "summary" : "Retrieves the error geometry data associated with the PrintJob designated by the specified job id. This function will return a list of indicies that are determined to be in error.",
+        "description" : "",
+        "operationId" : "getGeometryErrors",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "jobId",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success"
+          },
+          "400" : {
+            "description" : "(A job manager problem)"
+          }
+        }
+      }
+    },
+    "/printJobs/get/{jobId}" : {
+      "get" : {
+        "tags" : [ "printJobs" ],
+        "summary" : "Returns the specific printjob designated by it's internal job id.",
+        "description" : "",
+        "operationId" : "getById",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "jobId",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success"
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/printJobs/getByPrinterName/{printerName}" : {
+      "get" : {
+        "tags" : [ "printJobs" ],
+        "summary" : "Returns the specific PrintJob that is currently active for the specified printer name.",
+        "description" : "",
+        "operationId" : "getByPrinterName",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "printerName",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success"
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/printJobs/list" : {
+      "get" : {
+        "tags" : [ "printJobs" ],
+        "summary" : "Returns a list of all active and inactive printjobs on Phontonic 3D.",
+        "description" : "",
+        "operationId" : "getPrintJobs",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Success"
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/printJobs/overrideExposuretime/{jobId}/{exposureTime}" : {
+      "get" : {
+        "tags" : [ "printJobs" ],
+        "summary" : "Overrides the exposure time variable for the PrintJob designated by the specified job id.",
+        "description" : "",
+        "operationId" : "overrideExposuretime",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "jobId",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "exposureTime",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success"
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/printJobs/overrideZLiftDistance/{jobId}/{distance}" : {
+      "get" : {
+        "tags" : [ "printJobs" ],
+        "summary" : "Overrides the lift distance variable for the PrintJob designated by the specified job id.",
+        "description" : "",
+        "operationId" : "overrideZLiftDistance",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "jobId",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "distance",
+          "in" : "path",
+          "required" : true,
+          "type" : "number",
+          "format" : "double"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success"
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/printJobs/overrideZLiftSpeed/{jobId}/{speed}" : {
+      "get" : {
+        "tags" : [ "printJobs" ],
+        "summary" : "Overrides the lift speed variable for the PrintJob designated by the specified job id.",
+        "description" : "",
+        "operationId" : "overrideZLiftSpeed",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "jobId",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "speed",
+          "in" : "path",
+          "required" : true,
+          "type" : "number",
+          "format" : "double"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success"
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/printJobs/stopJob/{jobId}" : {
+      "get" : {
+        "tags" : [ "printJobs" ],
+        "summary" : "Stops/cancels the PrintJob designated by the specified job id.",
+        "description" : "",
+        "operationId" : "stopJob",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "jobId",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success"
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/printJobs/togglePause/{jobId}" : {
+      "get" : {
+        "tags" : [ "printJobs" ],
+        "summary" : "Pause/resumes the PrintJob designated by the specified job id.",
+        "description" : "",
+        "operationId" : "togglePause",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "jobId",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success"
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/printables/delete/{filename}" : {
+      "get" : {
+        "tags" : [ "printables" ],
+        "summary" : "Deletes the specificed Printable file.",
+        "description" : "",
+        "operationId" : "deleteFile",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "filename",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success"
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/printables/downloadPrintableFile/{filename}" : {
+      "post" : {
+        "tags" : [ "printables" ],
+        "summary" : "Download a printable file using application/octet-stream. No conversion of the stream is performed; instead, it is streamed directly from the source file.",
+        "description" : "",
+        "operationId" : "downloadPrintableFile",
+        "produces" : [ "application/octet-stream" ],
+        "parameters" : [ {
+          "name" : "filename",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success"
+          },
+          "400" : {
+            "description" : "The request was unsuccessful and the user of the application should be expected to understand the reason for failure."
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/printables/list" : {
+      "get" : {
+        "tags" : [ "printables" ],
+        "summary" : "Lists the printable files that have been previously uploaded and are available to be printed on the Host.",
+        "description" : "",
+        "operationId" : "getPrintables",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Success"
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/printables/print/{filename}" : {
+      "post" : {
+        "tags" : [ "printables" ],
+        "summary" : "Attempt to start a print by specifying the name of the printable file. For this operation to be successful, there must be exactly one Printer started.",
+        "description" : "",
+        "operationId" : "print",
+        "parameters" : [ {
+          "name" : "filename",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success"
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/printables/uploadPrintableFile" : {
+      "post" : {
+        "tags" : [ "printables" ],
+        "summary" : "Upload a printable file using multipart/form-data. After the upload is complete, the file will be checked against all known print processors to determine if it is sutable for printing.",
+        "description" : "",
+        "operationId" : "uploadPrintableFile",
+        "consumes" : [ "multipart/form-data" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/MultipartFormDataInput"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success"
+          },
+          "400" : {
+            "description" : "The request was unsuccessful and the user of the application should be expected to understand the reason for failure."
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/printables/uploadPrintableFile/{filename}" : {
+      "post" : {
+        "tags" : [ "printables" ],
+        "summary" : "Upload a printable file using application/octet-stream. After the upload is complete, the file will be checked against all known print processors to determine if it is sutable for printing.",
+        "description" : "",
+        "operationId" : "uploadPrintableFile",
+        "consumes" : [ "application/octet-stream" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/InputStream"
+          }
+        }, {
+          "name" : "filename",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success"
+          },
+          "400" : {
+            "description" : "The request was unsuccessful and the user of the application should be expected to understand the reason for failure."
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/printables/uploadviaurl/{filename}/{uri}" : {
+      "post" : {
+        "tags" : [ "printables" ],
+        "summary" : "Initiates a download from the internet to this host using the specified filename and uri. This method will return immediately to let the user know whether the the download was scheduled. After the file is uploaded, the file will be checked to determine if a org.area515.resinprinter.job.PrintFileProcessor is willing to take responsibility for the file. If the file upload is successful and PrintFileProcessor assignment is complete, a notification will be sent to the NotificationManager. The NotificationManager will then notify all registered implementations of <b class=\"code\">org.area515.resinprinter.notification.Notifier</b>. Implemenations of Notifier are currently Email and WebSockets.",
+        "description" : "",
+        "operationId" : "uploadViaURL",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "uri",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "filename",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success"
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/printers/calibrate/{printername}/{xpixelspermm}/{ypixelspermm}" : {
+      "get" : {
+        "tags" : [ "printers" ],
+        "summary" : "This method calibrates the Printer with the specified printername using <b class=\"code\">xpixelspermm</b> and <b class=\"code\">ypixelspermm</b>. This is the only service method that allows that saving of a Printer while it has already been started.",
+        "description" : "",
+        "operationId" : "calibrate",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "printername",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "xpixelspermm",
+          "in" : "path",
+          "required" : true,
+          "type" : "number",
+          "format" : "double"
+        }, {
+          "name" : "ypixelspermm",
+          "in" : "path",
+          "required" : true,
+          "type" : "number",
+          "format" : "double"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "This method returns a MachineResponse which is comprised of three things:<ul>\t<li>command - This names the command that was just sent to the server, it is designed to be suitable for a UI to show this as a part of a window title.</li>\t<li>response - This method returns 'true' if the command being attempted was successful and 'false' if the command wasn't able to be performed.</li>\t<li>message - If the command that was sent to the host was unsuccessful(the response was false), then this is the error message that is designed to be shown to the user. Conversely, if the command was successful, this will contain a bit of helpful information that the user might be interested in seeing.</li></ul>",
+            "schema" : {
+              "$ref" : "#/definitions/MachineResponse"
+            }
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/printers/closeshutter/{printername}" : {
+      "get" : {
+        "tags" : [ "printers" ],
+        "summary" : "Closes the shutter(when supported) of the Printer specified by the <b class=\"code\">printername</b>.",
+        "description" : "",
+        "operationId" : "closeShutter",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "printername",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "This method returns a MachineResponse which is comprised of three things:<ul>\t<li>command - This names the command that was just sent to the server, it is designed to be suitable for a UI to show this as a part of a window title.</li>\t<li>response - This method returns 'true' if the command being attempted was successful and 'false' if the command wasn't able to be performed.</li>\t<li>message - If the command that was sent to the host was unsuccessful(the response was false), then this is the error message that is designed to be shown to the user. Conversely, if the command was successful, this will contain a bit of helpful information that the user might be interested in seeing.</li></ul>",
+            "schema" : {
+              "$ref" : "#/definitions/MachineResponse"
+            }
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/printers/createTemplatePrinter" : {
+      "post" : {
+        "tags" : [ "printers" ],
+        "summary" : "Creates and returns a Printer based off of a predefined template.",
+        "description" : "",
+        "operationId" : "createTemplatePrinter",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "TODO: Need to document response model."
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/printers/delete/{printername}" : {
+      "get" : {
+        "tags" : [ "printers" ],
+        "summary" : "Deletes the Printer specified by the printername.",
+        "description" : "",
+        "operationId" : "deletePrinter",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "printername",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "This method returns a MachineResponse which is comprised of three things:<ul>\t<li>command - This names the command that was just sent to the server, it is designed to be suitable for a UI to show this as a part of a window title.</li>\t<li>response - This method returns 'true' if the command being attempted was successful and 'false' if the command wasn't able to be performed.</li>\t<li>message - If the command that was sent to the host was unsuccessful(the response was false), then this is the error message that is designed to be shown to the user. Conversely, if the command was successful, this will contain a bit of helpful information that the user might be interested in seeing.</li></ul>",
+            "schema" : {
+              "$ref" : "#/definitions/MachineResponse"
+            }
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/printers/executeGCode/{printername}/{gcode}" : {
+      "get" : {
+        "tags" : [ "printers" ],
+        "summary" : "Executes the specified device dependent code(generally gcode) on the Printer given by the printername.",
+        "description" : "",
+        "operationId" : "executeGCode",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "printername",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "gcode",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "This method returns a MachineResponse which is comprised of three things:<ul>\t<li>command - This names the command that was just sent to the server, it is designed to be suitable for a UI to show this as a part of a window title.</li>\t<li>response - This method returns 'true' if the command being attempted was successful and 'false' if the command wasn't able to be performed.</li>\t<li>message - If the command that was sent to the host was unsuccessful(the response was false), then this is the error message that is designed to be shown to the user. Conversely, if the command was successful, this will contain a bit of helpful information that the user might be interested in seeing.</li></ul>",
+            "schema" : {
+              "$ref" : "#/definitions/MachineResponse"
+            }
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/printers/get/{printername}" : {
+      "get" : {
+        "tags" : [ "printers" ],
+        "summary" : "Returns the Printer specified by the printername.",
+        "description" : "",
+        "operationId" : "getPrinter",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "printername",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "TODO: Need to document response model."
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/printers/homeX/{printername}" : {
+      "get" : {
+        "tags" : [ "printers" ],
+        "summary" : "Homes the X axis for the Printer specified by the printername.",
+        "description" : "",
+        "operationId" : "homeX",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "printername",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "This method returns a MachineResponse which is comprised of three things:<ul>\t<li>command - This names the command that was just sent to the server, it is designed to be suitable for a UI to show this as a part of a window title.</li>\t<li>response - This method returns 'true' if the command being attempted was successful and 'false' if the command wasn't able to be performed.</li>\t<li>message - If the command that was sent to the host was unsuccessful(the response was false), then this is the error message that is designed to be shown to the user. Conversely, if the command was successful, this will contain a bit of helpful information that the user might be interested in seeing.</li></ul>",
+            "schema" : {
+              "$ref" : "#/definitions/MachineResponse"
+            }
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/printers/homeY/{printername}" : {
+      "get" : {
+        "tags" : [ "printers" ],
+        "summary" : "Homes the Y axis for the Printer specified by the printername.",
+        "description" : "",
+        "operationId" : "homeY",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "printername",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "This method returns a MachineResponse which is comprised of three things:<ul>\t<li>command - This names the command that was just sent to the server, it is designed to be suitable for a UI to show this as a part of a window title.</li>\t<li>response - This method returns 'true' if the command being attempted was successful and 'false' if the command wasn't able to be performed.</li>\t<li>message - If the command that was sent to the host was unsuccessful(the response was false), then this is the error message that is designed to be shown to the user. Conversely, if the command was successful, this will contain a bit of helpful information that the user might be interested in seeing.</li></ul>",
+            "schema" : {
+              "$ref" : "#/definitions/MachineResponse"
+            }
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/printers/homeZ/{printername}" : {
+      "get" : {
+        "tags" : [ "printers" ],
+        "summary" : "Homes the Z axis for the Printer specified by the printername.",
+        "description" : "",
+        "operationId" : "homeZ",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "printername",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "This method returns a MachineResponse which is comprised of three things:<ul>\t<li>command - This names the command that was just sent to the server, it is designed to be suitable for a UI to show this as a part of a window title.</li>\t<li>response - This method returns 'true' if the command being attempted was successful and 'false' if the command wasn't able to be performed.</li>\t<li>message - If the command that was sent to the host was unsuccessful(the response was false), then this is the error message that is designed to be shown to the user. Conversely, if the command was successful, this will contain a bit of helpful information that the user might be interested in seeing.</li></ul>",
+            "schema" : {
+              "$ref" : "#/definitions/MachineResponse"
+            }
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/printers/list" : {
+      "get" : {
+        "tags" : [ "printers" ],
+        "summary" : "Lists all of the printers that are managed by Photonic 3D.",
+        "description" : "",
+        "operationId" : "getPrinters",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "TODO: Need to document response model."
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/printers/motorsOff/{printername}" : {
+      "get" : {
+        "tags" : [ "printers" ],
+        "summary" : "Turns off the motors so that they can be manually turned by hand.",
+        "description" : "",
+        "operationId" : "motorsOff",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "printername",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "This method returns a MachineResponse which is comprised of three things:<ul>\t<li>command - This names the command that was just sent to the server, it is designed to be suitable for a UI to show this as a part of a window title.</li>\t<li>response - This method returns 'true' if the command being attempted was successful and 'false' if the command wasn't able to be performed.</li>\t<li>message - If the command that was sent to the host was unsuccessful(the response was false), then this is the error message that is designed to be shown to the user. Conversely, if the command was successful, this will contain a bit of helpful information that the user might be interested in seeing.</li></ul>",
+            "schema" : {
+              "$ref" : "#/definitions/MachineResponse"
+            }
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/printers/motorsOn/{printername}" : {
+      "get" : {
+        "tags" : [ "printers" ],
+        "summary" : "Turns on the motors so that they can't be manually turned by hand.",
+        "description" : "",
+        "operationId" : "motorsOn",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "printername",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "This method returns a MachineResponse which is comprised of three things:<ul>\t<li>command - This names the command that was just sent to the server, it is designed to be suitable for a UI to show this as a part of a window title.</li>\t<li>response - This method returns 'true' if the command being attempted was successful and 'false' if the command wasn't able to be performed.</li>\t<li>message - If the command that was sent to the host was unsuccessful(the response was false), then this is the error message that is designed to be shown to the user. Conversely, if the command was successful, this will contain a bit of helpful information that the user might be interested in seeing.</li></ul>",
+            "schema" : {
+              "$ref" : "#/definitions/MachineResponse"
+            }
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/printers/moveX/{printername}/{distance}" : {
+      "get" : {
+        "tags" : [ "printers" ],
+        "summary" : "Executes an X based movement for the Printer specified by the printername.",
+        "description" : "",
+        "operationId" : "moveX",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "distance",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "printername",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "This method returns a MachineResponse which is comprised of three things:<ul>\t<li>command - This names the command that was just sent to the server, it is designed to be suitable for a UI to show this as a part of a window title.</li>\t<li>response - This method returns 'true' if the command being attempted was successful and 'false' if the command wasn't able to be performed.</li>\t<li>message - If the command that was sent to the host was unsuccessful(the response was false), then this is the error message that is designed to be shown to the user. Conversely, if the command was successful, this will contain a bit of helpful information that the user might be interested in seeing.</li></ul>",
+            "schema" : {
+              "$ref" : "#/definitions/MachineResponse"
+            }
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/printers/moveY/{printername}/{distance}" : {
+      "get" : {
+        "tags" : [ "printers" ],
+        "summary" : "Executes a Y based movement for the Printer specified by the printername.",
+        "description" : "",
+        "operationId" : "moveY",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "distance",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "printername",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "This method returns a MachineResponse which is comprised of three things:<ul>\t<li>command - This names the command that was just sent to the server, it is designed to be suitable for a UI to show this as a part of a window title.</li>\t<li>response - This method returns 'true' if the command being attempted was successful and 'false' if the command wasn't able to be performed.</li>\t<li>message - If the command that was sent to the host was unsuccessful(the response was false), then this is the error message that is designed to be shown to the user. Conversely, if the command was successful, this will contain a bit of helpful information that the user might be interested in seeing.</li></ul>",
+            "schema" : {
+              "$ref" : "#/definitions/MachineResponse"
+            }
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/printers/moveZ/{printername}/{distance}" : {
+      "get" : {
+        "tags" : [ "printers" ],
+        "summary" : "Executes a Z based movement for the Printer specified by the printername.",
+        "description" : "",
+        "operationId" : "moveZ",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "distance",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "printername",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "This method returns a MachineResponse which is comprised of three things:<ul>\t<li>command - This names the command that was just sent to the server, it is designed to be suitable for a UI to show this as a part of a window title.</li>\t<li>response - This method returns 'true' if the command being attempted was successful and 'false' if the command wasn't able to be performed.</li>\t<li>message - If the command that was sent to the host was unsuccessful(the response was false), then this is the error message that is designed to be shown to the user. Conversely, if the command was successful, this will contain a bit of helpful information that the user might be interested in seeing.</li></ul>",
+            "schema" : {
+              "$ref" : "#/definitions/MachineResponse"
+            }
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/printers/openshutter/{printername}" : {
+      "get" : {
+        "tags" : [ "printers" ],
+        "summary" : "Opens the shutter(when supported) of the Printer specified by the printername.",
+        "description" : "",
+        "operationId" : "openShutter",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "printername",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "This method returns a MachineResponse which is comprised of three things:<ul>\t<li>command - This names the command that was just sent to the server, it is designed to be suitable for a UI to show this as a part of a window title.</li>\t<li>response - This method returns 'true' if the command being attempted was successful and 'false' if the command wasn't able to be performed.</li>\t<li>message - If the command that was sent to the host was unsuccessful(the response was false), then this is the error message that is designed to be shown to the user. Conversely, if the command was successful, this will contain a bit of helpful information that the user might be interested in seeing.</li></ul>",
+            "schema" : {
+              "$ref" : "#/definitions/MachineResponse"
+            }
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/printers/remainingPrintMaterial/{printername}" : {
+      "get" : {
+        "tags" : [ "printers" ],
+        "summary" : "Returns the remaining print material left in the printer using the org.area515.resinprinter.inkdetection.PrintMaterialDetector that is setup in the Printer specified by the printerName.",
+        "description" : "",
+        "operationId" : "getRemainingResin",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "printername",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "This method returns a MachineResponse which is comprised of three things:<ul>\t<li>command - This names the command that was just sent to the server, it is designed to be suitable for a UI to show this as a part of a window title.</li>\t<li>response - This method returns 'true' if the command being attempted was successful and 'false' if the command wasn't able to be performed.</li>\t<li>message - If the command that was sent to the host was unsuccessful(the response was false), then this is the error message that is designed to be shown to the user. Conversely, if the command was successful, this will contain a bit of helpful information that the user might be interested in seeing.</li></ul>",
+            "schema" : {
+              "$ref" : "#/definitions/MachineResponse"
+            }
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/printers/save" : {
+      "post" : {
+        "tags" : [ "printers" ],
+        "summary" : "Saves the Printer.",
+        "description" : "",
+        "operationId" : "savePrinter",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/Printer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "This method returns a MachineResponse which is comprised of three things:<ul>\t<li>command - This names the command that was just sent to the server, it is designed to be suitable for a UI to show this as a part of a window title.</li>\t<li>response - This method returns 'true' if the command being attempted was successful and 'false' if the command wasn't able to be performed.</li>\t<li>message - If the command that was sent to the host was unsuccessful(the response was false), then this is the error message that is designed to be shown to the user. Conversely, if the command was successful, this will contain a bit of helpful information that the user might be interested in seeing.</li></ul>",
+            "schema" : {
+              "$ref" : "#/definitions/MachineResponse"
+            }
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/printers/showBlankScreen/{printername}" : {
+      "get" : {
+        "tags" : [ "printers" ],
+        "summary" : "Shows a blank screen on the Printer with the specified printername using xpixelspermm and ypixelspermm.",
+        "description" : "",
+        "operationId" : "showBlankScreen",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "printername",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "This method returns a MachineResponse which is comprised of three things:<ul>\t<li>command - This names the command that was just sent to the server, it is designed to be suitable for a UI to show this as a part of a window title.</li>\t<li>response - This method returns 'true' if the command being attempted was successful and 'false' if the command wasn't able to be performed.</li>\t<li>message - If the command that was sent to the host was unsuccessful(the response was false), then this is the error message that is designed to be shown to the user. Conversely, if the command was successful, this will contain a bit of helpful information that the user might be interested in seeing.</li></ul>",
+            "schema" : {
+              "$ref" : "#/definitions/MachineResponse"
+            }
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/printers/showCalibrationScreen/{printername}/{xpixels}/{ypixels}" : {
+      "get" : {
+        "tags" : [ "printers" ],
+        "summary" : "Shows the calibration screen on the Printer specified by the printername. The calibration screen will show a crosshairs icon with xpixels and ypixels across.",
+        "description" : "",
+        "operationId" : "showCalibrationScreen",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "printername",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "xpixels",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "ypixels",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "This method returns a MachineResponse which is comprised of three things:<ul>\t<li>command - This names the command that was just sent to the server, it is designed to be suitable for a UI to show this as a part of a window title.</li>\t<li>response - This method returns 'true' if the command being attempted was successful and 'false' if the command wasn't able to be performed.</li>\t<li>message - If the command that was sent to the host was unsuccessful(the response was false), then this is the error message that is designed to be shown to the user. Conversely, if the command was successful, this will contain a bit of helpful information that the user might be interested in seeing.</li></ul>",
+            "schema" : {
+              "$ref" : "#/definitions/MachineResponse"
+            }
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/printers/showGridScreen/{printername}/{pixels}" : {
+      "get" : {
+        "tags" : [ "printers" ],
+        "summary" : "Shows the grid screen on the Printer specified by the printername.",
+        "description" : "",
+        "operationId" : "showGridScreen",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "printername",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "pixels",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "This method returns a MachineResponse which is comprised of three things:<ul>\t<li>command - This names the command that was just sent to the server, it is designed to be suitable for a UI to show this as a part of a window title.</li>\t<li>response - This method returns 'true' if the command being attempted was successful and 'false' if the command wasn't able to be performed.</li>\t<li>message - If the command that was sent to the host was unsuccessful(the response was false), then this is the error message that is designed to be shown to the user. Conversely, if the command was successful, this will contain a bit of helpful information that the user might be interested in seeing.</li></ul>",
+            "schema" : {
+              "$ref" : "#/definitions/MachineResponse"
+            }
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/printers/start/{printername}" : {
+      "get" : {
+        "tags" : [ "printers" ],
+        "summary" : "Starts the Printer specified by the printername.",
+        "description" : "",
+        "operationId" : "startPrinter",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "printername",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "This method returns a MachineResponse which is comprised of three things:<ul>\t<li>command - This names the command that was just sent to the server, it is designed to be suitable for a UI to show this as a part of a window title.</li>\t<li>response - This method returns 'true' if the command being attempted was successful and 'false' if the command wasn't able to be performed.</li>\t<li>message - If the command that was sent to the host was unsuccessful(the response was false), then this is the error message that is designed to be shown to the user. Conversely, if the command was successful, this will contain a bit of helpful information that the user might be interested in seeing.</li></ul>",
+            "schema" : {
+              "$ref" : "#/definitions/MachineResponse"
+            }
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/printers/startJob/{fileName}/{printername}" : {
+      "get" : {
+        "tags" : [ "printers" ],
+        "summary" : "Starts a print with the specified Printable fileName and Printer name. This method is only necessary if there is more than one printer running since you need to designate which Printer you would like to print to. ",
+        "description" : "",
+        "operationId" : "print",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "fileName",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "printername",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "This method returns a MachineResponse which is comprised of three things:<ul>\t<li>command - This names the command that was just sent to the server, it is designed to be suitable for a UI to show this as a part of a window title.</li>\t<li>response - This method returns 'true' if the command being attempted was successful and 'false' if the command wasn't able to be performed.</li>\t<li>message - If the command that was sent to the host was unsuccessful(the response was false), then this is the error message that is designed to be shown to the user. Conversely, if the command was successful, this will contain a bit of helpful information that the user might be interested in seeing.</li></ul>",
+            "schema" : {
+              "$ref" : "#/definitions/MachineResponse"
+            }
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/printers/startProjector/{printername}" : {
+      "get" : {
+        "tags" : [ "printers" ],
+        "summary" : "Starts the projector(if it's supported) for the Printer specified by the printername.",
+        "description" : "",
+        "operationId" : "startProjector",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "printername",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "This method returns a MachineResponse which is comprised of three things:<ul>\t<li>command - This names the command that was just sent to the server, it is designed to be suitable for a UI to show this as a part of a window title.</li>\t<li>response - This method returns 'true' if the command being attempted was successful and 'false' if the command wasn't able to be performed.</li>\t<li>message - If the command that was sent to the host was unsuccessful(the response was false), then this is the error message that is designed to be shown to the user. Conversely, if the command was successful, this will contain a bit of helpful information that the user might be interested in seeing.</li></ul>",
+            "schema" : {
+              "$ref" : "#/definitions/MachineResponse"
+            }
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/printers/stop/{printername}" : {
+      "get" : {
+        "tags" : [ "printers" ],
+        "summary" : "Stops the Printer specified by the printername.",
+        "description" : "",
+        "operationId" : "stopPrinter",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "printername",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "This method returns a MachineResponse which is comprised of three things:<ul>\t<li>command - This names the command that was just sent to the server, it is designed to be suitable for a UI to show this as a part of a window title.</li>\t<li>response - This method returns 'true' if the command being attempted was successful and 'false' if the command wasn't able to be performed.</li>\t<li>message - If the command that was sent to the host was unsuccessful(the response was false), then this is the error message that is designed to be shown to the user. Conversely, if the command was successful, this will contain a bit of helpful information that the user might be interested in seeing.</li></ul>",
+            "schema" : {
+              "$ref" : "#/definitions/MachineResponse"
+            }
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/printers/stopProjector/{printername}" : {
+      "get" : {
+        "tags" : [ "printers" ],
+        "summary" : "Stops the projector(if it's supported) for the Printer specified by the printername.",
+        "description" : "",
+        "operationId" : "stopProjector",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "printername",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "This method returns a MachineResponse which is comprised of three things:<ul>\t<li>command - This names the command that was just sent to the server, it is designed to be suitable for a UI to show this as a part of a window title.</li>\t<li>response - This method returns 'true' if the command being attempted was successful and 'false' if the command wasn't able to be performed.</li>\t<li>message - If the command that was sent to the host was unsuccessful(the response was false), then this is the error message that is designed to be shown to the user. Conversely, if the command was successful, this will contain a bit of helpful information that the user might be interested in seeing.</li></ul>",
+            "schema" : {
+              "$ref" : "#/definitions/MachineResponse"
+            }
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/printers/testScript/{printername}/{scriptname}/{returnType}" : {
+      "post" : {
+        "tags" : [ "printers" ],
+        "summary" : "Tests out a script using the scripting language(likely javascript) specified in the config.properties via scriptEngineLanguage=[script language]The returnType parameter passed to this method must match a known Java type or the following format: requestedJavaReturnTypeOfScript[printerVariableToShowInSeries(start,stop,increment),printerVariableToShowInRange(start,stop,increment)]Here are some examples: If your script expects an double return type you would use: java.lang.String If your script does not expect a return value you would use: java.lang.Void If your script wants to return chart data in a json array that describes how 'bulbHours' and 'CURSLICE' affect exposureTime you could use: java.lang.Double[CURSLICE(1,5,1)buildAreaMM(10000,20000,1000]",
+        "description" : "",
+        "operationId" : "testScript",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "printername",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "scriptname",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "returnType",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "TODO: Need to document response model."
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/printers/testTemplate/{printername}/{templatename}" : {
+      "post" : {
+        "tags" : [ "printers" ],
+        "summary" : "Computes the return value, but does not execute the template specified by the post parameters. Generally the returned template is gcode, but could be any protocol that the user requires.",
+        "description" : "",
+        "operationId" : "testTemplate",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "printername",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "templatename",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "TODO: Need to document response model."
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/settings/emailSettings" : {
+      "get" : {
+        "tags" : [ "settings" ],
+        "summary" : "Get the email settings that are setup for the NotificationManager and taking diagnostics.",
+        "description" : "",
+        "operationId" : "getEmailSettings",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Success"
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "settings" ],
+        "summary" : "Allows the email settings to be setup for the NotificationManager and taking diagnostics.",
+        "description" : "",
+        "operationId" : "setEmailSettings",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/CwhEmailSettings"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success"
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/settings/hostInformation" : {
+      "get" : {
+        "tags" : [ "settings" ],
+        "summary" : "This will return the host information(device name and manufacturer) that is setup in config.properties. This host information is also what identifies Photonic 3D printers through multicast to DLNA and UPNP clients on the user's network.",
+        "description" : "",
+        "operationId" : "getHostInformation",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Success"
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "settings" ],
+        "summary" : "This will set the host information(device name and manufacturer) that is configured in config.properties. This host information is also what identifies Photonic 3D printers through multicast to DLNA and UPNP clients on the user's network.",
+        "description" : "",
+        "operationId" : "setHostInformation",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/HostInformation"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success"
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/settings/integerVersion" : {
+      "get" : {
+        "tags" : [ "settings" ],
+        "summary" : "Returns the integer based version number of Photonic3D found in the build.number file.",
+        "description" : "",
+        "operationId" : "getIntegerVersion",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Success"
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/settings/printerProfileRepo" : {
+      "get" : {
+        "tags" : [ "settings" ],
+        "summary" : "Returns the GitHub repo name to load printer profiles from.",
+        "description" : "",
+        "operationId" : "getPrinterProfileRepo",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Success"
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/settings/releaseTagName" : {
+      "get" : {
+        "tags" : [ "settings" ],
+        "summary" : "Returns the string release tag (repo.version) of Photonic3D found in the build.number file.",
+        "description" : "",
+        "operationId" : "getReleaseTagName",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Success"
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    },
+    "/settings/visibleCards" : {
+      "get" : {
+        "tags" : [ "settings" ],
+        "summary" : "This method returns a hint towards the visible cards that should be shown in the GUI. The config.properties key for this is: visibleCards",
+        "description" : "",
+        "operationId" : "getVisibleCards",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Success"
+          },
+          "500" : {
+            "description" : "If the server experienced an unexpected error that the GUI should not expect to recover."
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "MachineResponse" : {
+      "type" : "object",
+      "properties" : {
+        "command" : {
+          "type" : "string"
+        },
+        "response" : {
+          "type" : "boolean",
+          "default" : false
+        },
+        "message" : {
+          "type" : "string"
+        }
+      }
+    },
+    "MachineConfig" : {
+      "type" : "object",
+      "properties" : {
+        "platformXSize" : {
+          "type" : "number",
+          "format" : "double",
+          "xml" : {
+            "name" : "PlatformXSize"
+          }
+        },
+        "platformYSize" : {
+          "type" : "number",
+          "format" : "double",
+          "xml" : {
+            "name" : "PlatformYSize"
+          }
+        },
+        "platformZSize" : {
+          "type" : "number",
+          "format" : "double",
+          "xml" : {
+            "name" : "PlatformZSize"
+          }
+        },
+        "getxRenderSize" : {
+          "type" : "integer",
+          "format" : "int32",
+          "xml" : {
+            "name" : "XRenderSize"
+          }
+        },
+        "getyRenderSize" : {
+          "type" : "integer",
+          "format" : "int32",
+          "xml" : {
+            "name" : "YRenderSize"
+          }
+        },
+        "motorsDriverConfig" : {
+          "xml" : {
+            "name" : "MotorsDriverConfig"
+          },
+          "$ref" : "#/definitions/MotorsDriverConfig"
+        },
+        "monitorDriverConfig" : {
+          "xml" : {
+            "name" : "MonitorDriverConfig"
+          },
+          "$ref" : "#/definitions/MonitorDriverConfig"
+        },
+        "pauseOnPrinterResponseRegEx" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "PauseOnPrinterResponseRegEx"
+          }
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "osmonitorID" : {
+          "type" : "string"
+        }
+      },
+      "xml" : {
+        "name" : "MachineConfig"
+      }
+    },
+    "StreamingOutput" : {
+      "type" : "object"
+    },
+    "InkConfig" : {
+      "type" : "object",
+      "properties" : {
+        "printMaterialDetector" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "PrintMaterialDetector"
+          }
+        },
+        "name" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "Name"
+          }
+        },
+        "sliceHeight" : {
+          "type" : "number",
+          "format" : "double",
+          "xml" : {
+            "name" : "SliceHeight"
+          }
+        },
+        "numberOfFirstLayers" : {
+          "type" : "integer",
+          "format" : "int32",
+          "xml" : {
+            "name" : "NumberofBottomLayers"
+          }
+        },
+        "resinPriceL" : {
+          "type" : "number",
+          "format" : "double",
+          "xml" : {
+            "name" : "ResinPriceL"
+          }
+        },
+        "percentageOfInkConsideredEmpty" : {
+          "type" : "number",
+          "format" : "float"
+        },
+        "firstLayerExposureTime" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "exposureTime" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "Printer" : {
+      "type" : "object",
+      "properties" : {
+        "configuration" : {
+          "$ref" : "#/definitions/PrinterConfiguration"
+        },
+        "started" : {
+          "type" : "boolean",
+          "default" : false
+        },
+        "shutterOpen" : {
+          "type" : "boolean",
+          "default" : false
+        },
+        "displayDeviceID" : {
+          "type" : "string"
+        },
+        "currentSlicePauseTime" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "status" : {
+          "type" : "string",
+          "readOnly" : true,
+          "enum" : [ "Ready", "Printing", "Failed", "Completed", "Cancelled", "Cancelling", "Deleted", "Paused", "PausedOutOfPrintMaterial", "PausedWithWarning" ]
+        },
+        "cachedBulbHours" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "printInProgress" : {
+          "type" : "boolean",
+          "readOnly" : true,
+          "default" : false
+        },
+        "printPaused" : {
+          "type" : "boolean",
+          "readOnly" : true,
+          "default" : false
+        }
+      }
+    },
+    "Font" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "Name"
+          }
+        },
+        "size" : {
+          "type" : "integer",
+          "format" : "int32",
+          "xml" : {
+            "name" : "Size"
+          }
+        }
+      }
+    },
+    "MonitorDriverConfig" : {
+      "type" : "object",
+      "properties" : {
+        "comPortSettings" : {
+          "xml" : {
+            "name" : "ComPortSettings"
+          },
+          "$ref" : "#/definitions/ComPortSettings"
+        },
+        "useMask" : {
+          "type" : "boolean",
+          "xml" : {
+            "name" : "UseMask"
+          },
+          "default" : false
+        },
+        "dlp_X_Res" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "dlp_Y_Res" : {
+          "type" : "number",
+          "format" : "double"
+        }
+      }
+    },
+    "TestingResult" : {
+      "type" : "object",
+      "properties" : {
+        "error" : {
+          "type" : "boolean",
+          "default" : false
+        },
+        "errorDescription" : {
+          "type" : "string"
+        },
+        "errorLineNumber" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "result" : {
+          "type" : "object"
+        }
+      }
+    },
+    "InputPart" : {
+      "type" : "object",
+      "properties" : {
+        "headers" : {
+          "type" : "object",
+          "additionalProperties" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        },
+        "contentTypeFromMessage" : {
+          "type" : "boolean",
+          "default" : false
+        },
+        "mediaType" : {
+          "$ref" : "#/definitions/MediaType"
+        },
+        "bodyAsString" : {
+          "type" : "string"
+        }
+      }
+    },
+    "CwhEmailSettings" : {
+      "type" : "object",
+      "properties" : {
+        "smtpServer" : {
+          "type" : "string"
+        },
+        "smtpPort" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "userName" : {
+          "type" : "string"
+        },
+        "password" : {
+          "type" : "string"
+        },
+        "useTLS" : {
+          "type" : "boolean",
+          "default" : false
+        },
+        "notificationEmailAddresses" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "serviceEmailAddresses" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "PrinterConfiguration" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        },
+        "machineConfigName" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "MachineConfigurationName"
+          }
+        },
+        "slicingProfileName" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "SlicingProfileName"
+          }
+        },
+        "autoStart" : {
+          "type" : "boolean",
+          "xml" : {
+            "name" : "AutoStart"
+          },
+          "default" : false
+        },
+        "calibrated" : {
+          "type" : "boolean",
+          "xml" : {
+            "name" : "Calibrated"
+          },
+          "default" : false
+        },
+        "machineConfig" : {
+          "$ref" : "#/definitions/MachineConfig"
+        },
+        "slicingProfile" : {
+          "$ref" : "#/definitions/SlicingProfile"
+        }
+      },
+      "xml" : {
+        "name" : "PrinterConfiguration"
+      }
+    },
+    "MediaType" : {
+      "type" : "object",
+      "properties" : {
+        "type" : {
+          "type" : "string"
+        },
+        "subtype" : {
+          "type" : "string"
+        },
+        "parameters" : {
+          "type" : "object",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "wildcardSubtype" : {
+          "type" : "boolean",
+          "default" : false
+        },
+        "wildcardType" : {
+          "type" : "boolean",
+          "default" : false
+        }
+      }
+    },
+    "WirelessEncryption" : {
+      "type" : "object",
+      "properties" : {
+        "encryptionClass" : {
+          "type" : "string",
+          "enum" : [ "WPA", "WPA2", "WEP", "Open" ]
+        },
+        "groupCipher" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string",
+            "enum" : [ "CCMP", "TKIP" ]
+          }
+        },
+        "pairwiseCipher" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string",
+            "enum" : [ "CCMP", "TKIP" ]
+          }
+        }
+      }
+    },
+    "SlicingProfile" : {
+      "type" : "object",
+      "properties" : {
+        "dotsPermmX" : {
+          "type" : "number",
+          "format" : "double",
+          "xml" : {
+            "name" : "DotsPermmX"
+          }
+        },
+        "dotsPermmY" : {
+          "type" : "number",
+          "format" : "double",
+          "xml" : {
+            "name" : "DotsPermmY"
+          }
+        },
+        "getxResolution" : {
+          "type" : "integer",
+          "format" : "int32",
+          "xml" : {
+            "name" : "XResolution"
+          }
+        },
+        "getyResolution" : {
+          "type" : "integer",
+          "format" : "int32",
+          "xml" : {
+            "name" : "YResolution"
+          }
+        },
+        "direction" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "Direction"
+          },
+          "enum" : [ "Bottom_Up", "Top_Down" ]
+        },
+        "liftDistance" : {
+          "type" : "number",
+          "format" : "double",
+          "xml" : {
+            "name" : "LiftDistance"
+          }
+        },
+        "slideTiltValue" : {
+          "type" : "integer",
+          "format" : "int32",
+          "xml" : {
+            "name" : "SlideTiltValue"
+          }
+        },
+        "liftFeedRate" : {
+          "type" : "number",
+          "format" : "double",
+          "xml" : {
+            "name" : "LiftFeedRate"
+          }
+        },
+        "flipX" : {
+          "type" : "boolean",
+          "xml" : {
+            "name" : "FlipX"
+          },
+          "default" : false
+        },
+        "flipY" : {
+          "type" : "boolean",
+          "xml" : {
+            "name" : "FlipY"
+          },
+          "default" : false
+        },
+        "notes" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "Notes"
+          }
+        },
+        "getgCodeHeader" : {
+          "type" : "string"
+        },
+        "getgCodeFooter" : {
+          "type" : "string"
+        },
+        "getgCodePreslice" : {
+          "type" : "string"
+        },
+        "getgCodeLift" : {
+          "type" : "string"
+        },
+        "getgCodeShutter" : {
+          "type" : "string"
+        },
+        "getzLiftDistanceCalculator" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "ZLiftDistanceCalculator"
+          }
+        },
+        "getzLiftSpeedCalculator" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "ZLiftSpeedCalculator"
+          }
+        },
+        "projectorGradientCalculator" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "ProjectorGradientCalculator"
+          }
+        },
+        "exposureTimeCalculator" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "ExposureTimeCalculator"
+          }
+        },
+        "twoDimensionalSettings" : {
+          "xml" : {
+            "name" : "TwoDimensionalSettings"
+          },
+          "$ref" : "#/definitions/TwoDimensionalSettings"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "inkConfigs" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/InkConfig"
+          }
+        },
+        "zliftDistanceGCode" : {
+          "type" : "string"
+        },
+        "selectedInkConfigName" : {
+          "type" : "string"
+        },
+        "zliftSpeedGCode" : {
+          "type" : "string"
+        },
+        "selectedInkConfigIndex" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      },
+      "xml" : {
+        "name" : "SliceBuildConfig"
+      }
+    },
+    "PrintFileProcessorObjectObject" : {
+      "type" : "object",
+      "properties" : {
+        "fileExtensions" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "friendlyName" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ComPortSettings" : {
+      "type" : "object",
+      "properties" : {
+        "portName" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "PortName"
+          }
+        },
+        "speed" : {
+          "type" : "integer",
+          "format" : "int64",
+          "xml" : {
+            "name" : "Speed"
+          }
+        },
+        "databits" : {
+          "type" : "integer",
+          "format" : "int32",
+          "xml" : {
+            "name" : "Databits"
+          }
+        },
+        "parity" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "Parity"
+          }
+        },
+        "stopbits" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "Stopbits"
+          }
+        },
+        "handshake" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "Handshake"
+          }
+        }
+      }
+    },
+    "PrintJob" : {
+      "type" : "object",
+      "properties" : {
+        "totalSlices" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "currentSlice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "currentSliceTime" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "averageSliceTime" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "startTime" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "elapsedTime" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "totalCost" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "currentSliceCost" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "printFileProcessor" : {
+          "$ref" : "#/definitions/PrintFileProcessorObjectObject"
+        },
+        "errorDescription" : {
+          "type" : "string"
+        },
+        "exposureTime" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "id" : {
+          "type" : "string",
+          "format" : "uuid"
+        },
+        "printer" : {
+          "$ref" : "#/definitions/Printer"
+        },
+        "zliftDistanceOverriden" : {
+          "type" : "boolean",
+          "default" : false
+        },
+        "zliftSpeedOverriden" : {
+          "type" : "boolean",
+          "default" : false
+        },
+        "exposureTimeOverriden" : {
+          "type" : "boolean",
+          "default" : false
+        },
+        "printInProgress" : {
+          "type" : "boolean",
+          "readOnly" : true,
+          "default" : false
+        },
+        "zliftSpeed" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "zliftDistance" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "status" : {
+          "type" : "string",
+          "enum" : [ "Ready", "Printing", "Failed", "Completed", "Cancelled", "Cancelling", "Deleted", "Paused", "PausedOutOfPrintMaterial", "PausedWithWarning" ]
+        },
+        "printPaused" : {
+          "type" : "boolean",
+          "readOnly" : true,
+          "default" : false
+        },
+        "jobName" : {
+          "type" : "string"
+        }
+      }
+    },
+    "InputStream" : {
+      "type" : "object"
+    },
+    "TwoDimensionalSettings" : {
+      "type" : "object",
+      "properties" : {
+        "font" : {
+          "xml" : {
+            "name" : "Font"
+          },
+          "$ref" : "#/definitions/Font"
+        },
+        "platformHeightMM" : {
+          "type" : "number",
+          "format" : "double",
+          "xml" : {
+            "name" : "PlatformHeightMM"
+          }
+        },
+        "extrusionHeightMM" : {
+          "type" : "number",
+          "format" : "double",
+          "xml" : {
+            "name" : "ExtrusionHeightMM"
+          }
+        },
+        "platformCalculator" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "PlatformCalculator"
+          }
+        }
+      }
+    },
+    "AffineTransformSettings" : {
+      "type" : "object",
+      "properties" : {
+        "getxTranslate" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "getyTranslate" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "getxScale" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "getyScale" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "affineTransformScriptCalculator" : {
+          "type" : "string"
+        }
+      }
+    },
+    "MultipartFormDataInput" : {
+      "type" : "object",
+      "properties" : {
+        "formDataMap" : {
+          "type" : "object",
+          "additionalProperties" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/InputPart"
+            }
+          }
+        },
+        "formData" : {
+          "type" : "object",
+          "additionalProperties" : {
+            "$ref" : "#/definitions/InputPart"
+          }
+        },
+        "parts" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/InputPart"
+          }
+        },
+        "preamble" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Printable" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        },
+        "extension" : {
+          "type" : "string"
+        },
+        "size" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "printFileProcessor" : {
+          "$ref" : "#/definitions/PrintFileProcessorObjectObject"
+        },
+        "modifiedDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        }
+      }
+    },
+    "Customizer" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        },
+        "printerName" : {
+          "type" : "string"
+        },
+        "printableName" : {
+          "type" : "string"
+        },
+        "supportsAffineTransformSettings" : {
+          "type" : "boolean",
+          "default" : false
+        },
+        "affineTransformSettings" : {
+          "$ref" : "#/definitions/AffineTransformSettings"
+        }
+      }
+    },
+    "WirelessNetwork" : {
+      "type" : "object",
+      "properties" : {
+        "ssid" : {
+          "type" : "string"
+        },
+        "supportedWirelessEncryption" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/WirelessEncryption"
+          }
+        },
+        "parentInterfaceName" : {
+          "type" : "string"
+        },
+        "password" : {
+          "type" : "string"
+        }
+      }
+    },
+    "MotorsDriverConfig" : {
+      "type" : "object",
+      "properties" : {
+        "driverType" : {
+          "type" : "string",
+          "xml" : {
+            "name" : "DriverType"
+          }
+        },
+        "comPortSettings" : {
+          "xml" : {
+            "name" : "ComPortSettings"
+          },
+          "$ref" : "#/definitions/ComPortSettings"
+        }
+      }
+    },
+    "HostInformation" : {
+      "type" : "object",
+      "properties" : {
+        "deviceName" : {
+          "type" : "string"
+        },
+        "manufacturer" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}
