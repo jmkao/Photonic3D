@@ -1,0 +1,5190 @@
+{
+  "apiVersion" : "1",
+  "swaggerVersion" : "1.2",
+  "basePath" : "/services",
+  "resourcePath" : "/printers",
+  "apis" : [ {
+    "path" : "/printers/calibrate/{printername}/{xpixelspermm}/{ypixelspermm}",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "calibrate",
+      "type" : "MachineResponse",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "printername",
+        "required" : true
+      }, {
+        "type" : "number",
+        "format" : "double",
+        "paramType" : "path",
+        "name" : "xpixelspermm",
+        "required" : true
+      }, {
+        "type" : "number",
+        "format" : "double",
+        "paramType" : "path",
+        "name" : "ypixelspermm",
+        "required" : true
+      } ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/printers/closeshutter/{printername}",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "closeShutter",
+      "type" : "MachineResponse",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "printername",
+        "required" : true
+      } ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/printers/createTemplatePrinter",
+    "operations" : [ {
+      "method" : "POST",
+      "nickname" : "createTemplatePrinter",
+      "type" : "Printer",
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/printers/delete/{printername}",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "deletePrinter",
+      "type" : "MachineResponse",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "printername",
+        "required" : true
+      } ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/printers/executeGCode/{printername}/{gcode}",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "executeGCode",
+      "type" : "MachineResponse",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "printername",
+        "required" : true
+      }, {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "gcode",
+        "required" : true
+      } ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/printers/get/{printername}",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "getPrinter",
+      "type" : "Printer",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "printername",
+        "required" : true
+      } ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/printers/homeX/{printername}",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "homeX",
+      "type" : "MachineResponse",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "printername",
+        "required" : true
+      } ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/printers/homeY/{printername}",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "homeY",
+      "type" : "MachineResponse",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "printername",
+        "required" : true
+      } ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/printers/homeZ/{printername}",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "homeZ",
+      "type" : "MachineResponse",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "printername",
+        "required" : true
+      } ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/printers/list",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "getPrinters",
+      "type" : "array",
+      "items" : {
+        "$ref" : "Printer"
+      },
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/printers/motorsOff/{printername}",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "motorsOff",
+      "type" : "MachineResponse",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "printername",
+        "required" : true
+      } ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/printers/motorsOn/{printername}",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "motorsOn",
+      "type" : "MachineResponse",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "printername",
+        "required" : true
+      } ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/printers/moveX/{printername}/{distance}",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "moveX",
+      "type" : "MachineResponse",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "distance",
+        "required" : true
+      }, {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "printername",
+        "required" : true
+      } ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/printers/moveY/{printername}/{distance}",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "moveY",
+      "type" : "MachineResponse",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "distance",
+        "required" : true
+      }, {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "printername",
+        "required" : true
+      } ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/printers/moveZ/{printername}/{distance}",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "moveZ",
+      "type" : "MachineResponse",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "distance",
+        "required" : true
+      }, {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "printername",
+        "required" : true
+      } ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/printers/openshutter/{printername}",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "openShutter",
+      "type" : "MachineResponse",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "printername",
+        "required" : true
+      } ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/printers/remainingPrintMaterial/{printername}",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "getRemainingResin",
+      "type" : "MachineResponse",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "printername",
+        "required" : true
+      } ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/printers/save",
+    "operations" : [ {
+      "method" : "POST",
+      "nickname" : "savePrinter",
+      "type" : "MachineResponse",
+      "parameters" : [ {
+        "type" : "Printer",
+        "paramType" : "body",
+        "name" : "printerToSave",
+        "required" : true
+      } ],
+      "consumes" : [ "application/json" ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/printers/showBlankScreen/{printername}",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "showBlankScreen",
+      "type" : "MachineResponse",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "printername",
+        "required" : true
+      } ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/printers/showCalibrationScreen/{printername}/{xpixels}/{ypixels}",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "showCalibrationScreen",
+      "type" : "MachineResponse",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "printername",
+        "required" : true
+      }, {
+        "type" : "integer",
+        "format" : "int32",
+        "paramType" : "path",
+        "name" : "xpixels",
+        "required" : true
+      }, {
+        "type" : "integer",
+        "format" : "int32",
+        "paramType" : "path",
+        "name" : "ypixels",
+        "required" : true
+      } ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/printers/showGridScreen/{printername}/{pixels}",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "showGridScreen",
+      "type" : "MachineResponse",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "printername",
+        "required" : true
+      }, {
+        "type" : "integer",
+        "format" : "int32",
+        "paramType" : "path",
+        "name" : "pixels",
+        "required" : true
+      } ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/printers/start/{printername}",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "startPrinter",
+      "type" : "MachineResponse",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "printername",
+        "required" : true
+      } ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/printers/startJob/{fileName}/{printername}",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "print",
+      "type" : "MachineResponse",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "fileName",
+        "required" : true
+      }, {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "printername",
+        "required" : true
+      } ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/printers/startProjector/{printername}",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "startProjector",
+      "type" : "MachineResponse",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "printername",
+        "required" : true
+      } ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/printers/stop/{printername}",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "stopPrinter",
+      "type" : "MachineResponse",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "printername",
+        "required" : true
+      } ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/printers/stopProjector/{printername}",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "stopProjector",
+      "type" : "MachineResponse",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "printername",
+        "required" : true
+      } ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/printers/testScript/{printername}/{scriptname}/{returnType}",
+    "operations" : [ {
+      "method" : "POST",
+      "nickname" : "testScript",
+      "type" : "TestingResult",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "printername",
+        "required" : true
+      }, {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "scriptname",
+        "required" : true
+      }, {
+        "type" : "string",
+        "paramType" : "body",
+        "name" : "javascript",
+        "required" : true
+      }, {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "returnType",
+        "required" : true
+      } ],
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/printers/testTemplate/{printername}/{templatename}",
+    "operations" : [ {
+      "method" : "POST",
+      "nickname" : "testTemplate",
+      "type" : "TestingResult",
+      "parameters" : [ {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "printername",
+        "required" : true
+      }, {
+        "type" : "string",
+        "paramType" : "path",
+        "name" : "templatename",
+        "required" : true
+      }, {
+        "type" : "string",
+        "paramType" : "body",
+        "name" : "template",
+        "required" : true
+      } ],
+      "produces" : [ "application/json" ]
+    } ]
+  } ],
+  "models" : {
+    "MachineConfig" : {
+      "id" : "MachineConfig",
+      "properties" : {
+        "FileVersion" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "MaxXFeedRate" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "MaxYFeedRate" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "MaxZFeedRate" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "DisplayedControls" : {
+          "type" : "MachineConfig-DisplayedControls"
+        },
+        "MachineType" : {
+          "type" : "string"
+        },
+        "MultiMonType" : {
+          "type" : "string"
+        }
+      }
+    },
+    "TextAttribute" : {
+      "id" : "TextAttribute",
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Rectangle" : {
+      "id" : "Rectangle",
+      "properties" : {
+        "x" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "y" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "width" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "height" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "minX" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "minY" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "maxX" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "maxY" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "centerX" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "centerY" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "frame" : {
+          "type" : "Rectangle2D"
+        },
+        "empty" : {
+          "type" : "boolean"
+        },
+        "frameFromDiagonal" : {
+          "type" : "void"
+        },
+        "frameFromCenter" : {
+          "type" : "void"
+        },
+        "bounds" : {
+          "type" : "Rectangle"
+        },
+        "rect" : {
+          "type" : "void"
+        },
+        "bounds2D" : {
+          "type" : "Rectangle2D"
+        },
+        "location" : {
+          "type" : "Point"
+        },
+        "size" : {
+          "type" : "Dimension"
+        }
+      }
+    },
+    "MenuShortcut" : {
+      "id" : "MenuShortcut",
+      "properties" : {
+        "key" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "usesShift" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "Image" : {
+      "id" : "Image",
+      "properties" : {
+        "accelerationPriority" : {
+          "type" : "number",
+          "format" : "float"
+        },
+        "surfaceManager" : {
+          "type" : "SurfaceManager"
+        },
+        "source" : {
+          "type" : "ImageProducer"
+        },
+        "graphics" : {
+          "type" : "Graphics"
+        }
+      }
+    },
+    "EventQueue" : {
+      "id" : "EventQueue",
+      "properties" : {
+        "queues" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "Queue"
+          }
+        },
+        "nextQueue" : {
+          "type" : "EventQueue"
+        },
+        "previousQueue" : {
+          "type" : "EventQueue"
+        },
+        "pushPopLock" : {
+          "type" : "Lock"
+        },
+        "pushPopCond" : {
+          "type" : "Condition"
+        },
+        "threadGroup" : {
+          "type" : "ThreadGroup"
+        },
+        "classLoader" : {
+          "type" : "ClassLoader"
+        },
+        "mostRecentKeyEventTime" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "waitForID" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "appContext" : {
+          "type" : "AppContext"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "fwDispatcher" : {
+          "type" : "FwDispatcher"
+        },
+        "nextEvent" : {
+          "type" : "AWTEvent"
+        }
+      }
+    },
+    "GraphicsConfiguration" : {
+      "id" : "GraphicsConfiguration",
+      "properties" : {
+        "device" : {
+          "type" : "GraphicsDevice"
+        },
+        "colorModel" : {
+          "type" : "ColorModel"
+        },
+        "defaultTransform" : {
+          "type" : "AffineTransform"
+        },
+        "normalizingTransform" : {
+          "type" : "AffineTransform"
+        },
+        "bounds" : {
+          "type" : "Rectangle"
+        },
+        "bufferCapabilities" : {
+          "type" : "BufferCapabilities"
+        },
+        "imageCapabilities" : {
+          "type" : "ImageCapabilities"
+        },
+        "translucencyCapable" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "TestingResult" : {
+      "id" : "TestingResult",
+      "properties" : {
+        "error" : {
+          "type" : "boolean"
+        },
+        "errorDescription" : {
+          "type" : "string"
+        },
+        "errorLineNumber" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "result" : {
+          "type" : "Object"
+        }
+      }
+    },
+    "SurfaceData" : {
+      "id" : "SurfaceData",
+      "properties" : {
+        "pData" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "valid" : {
+          "type" : "boolean"
+        },
+        "surfaceLost" : {
+          "type" : "boolean"
+        },
+        "surfaceType" : {
+          "type" : "SurfaceType"
+        },
+        "colorModel" : {
+          "type" : "ColorModel"
+        },
+        "disposerReferent" : {
+          "type" : "Object"
+        },
+        "blitProxyKey" : {
+          "type" : "Object"
+        },
+        "stateDelegate" : {
+          "type" : "StateTrackableDelegate"
+        },
+        "haveLCDLoop" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "havePgramXORLoop" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "havePgramSolidLoop" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "state" : {
+          "type" : "string",
+          "enum" : [ "IMMUTABLE", "STABLE", "DYNAMIC", "UNTRACKABLE" ]
+        },
+        "stateTracker" : {
+          "type" : "StateTracker"
+        },
+        "nativeOps" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "replacement" : {
+          "type" : "SurfaceData"
+        },
+        "deviceConfiguration" : {
+          "type" : "GraphicsConfiguration"
+        },
+        "transparency" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "bounds" : {
+          "type" : "Rectangle"
+        },
+        "destination" : {
+          "type" : "Object"
+        },
+        "defaultScale" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "ColorModel" : {
+      "id" : "ColorModel",
+      "properties" : {
+        "pData" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "pixel_bits" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "nBits" : {
+          "type" : "array",
+          "items" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        },
+        "transparency" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "supportsAlpha" : {
+          "type" : "boolean"
+        },
+        "isAlphaPremultiplied" : {
+          "type" : "boolean"
+        },
+        "numComponents" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "numColorComponents" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "colorSpace" : {
+          "type" : "ColorSpace"
+        },
+        "colorSpaceType" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "maxBits" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "is_sRGB" : {
+          "type" : "boolean"
+        },
+        "transferType" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "alphaPremultiplied" : {
+          "type" : "boolean"
+        },
+        "pixelSize" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "componentSize" : {
+          "type" : "array",
+          "items" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        },
+        "compatibleRaster" : {
+          "type" : "boolean"
+        },
+        "compatibleSampleModel" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "FwDispatcher" : {
+      "id" : "FwDispatcher",
+      "properties" : {
+        "dispatchThread" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "InkDetector" : {
+      "id" : "InkDetector",
+      "properties" : {
+        "printer" : {
+          "type" : "Printer"
+        },
+        "printJob" : {
+          "type" : "PrintJob"
+        },
+        "detector" : {
+          "type" : "PrintMaterialDetector"
+        },
+        "printMaterialRemainingForEmpty" : {
+          "type" : "number",
+          "format" : "float"
+        },
+        "hasAlreadyPausedWithError" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "ReentrantLock" : {
+      "id" : "ReentrantLock",
+      "properties" : {
+        "sync" : {
+          "type" : "ReentrantLock-Sync"
+        },
+        "holdCount" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "heldByCurrentThread" : {
+          "type" : "boolean"
+        },
+        "locked" : {
+          "type" : "boolean"
+        },
+        "fair" : {
+          "type" : "boolean"
+        },
+        "owner" : {
+          "type" : "Thread"
+        },
+        "queueLength" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "queuedThreads" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "Thread"
+          }
+        }
+      }
+    },
+    "BufferStrategy" : {
+      "id" : "BufferStrategy",
+      "properties" : {
+        "capabilities" : {
+          "type" : "BufferCapabilities"
+        },
+        "drawGraphics" : {
+          "type" : "Graphics"
+        }
+      }
+    },
+    "CodeSource" : {
+      "id" : "CodeSource",
+      "properties" : {
+        "location" : {
+          "type" : "string"
+        },
+        "certificates" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "Certificate"
+          }
+        },
+        "codeSigners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "CodeSigner"
+          }
+        }
+      }
+    },
+    "ImageCapabilities" : {
+      "id" : "ImageCapabilities",
+      "properties" : {
+        "accelerated" : {
+          "type" : "boolean"
+        },
+        "trueVolatile" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "PropertyChangeSupport-PropertyChangeListenerMap" : {
+      "id" : "PropertyChangeSupport-PropertyChangeListenerMap",
+      "properties" : {
+        "map" : {
+          "type" : "Map"
+        },
+        "listeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "L"
+          }
+        },
+        "entries" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "Map-Entry"
+          },
+          "uniqueItems" : true
+        }
+      }
+    },
+    "AffineTransform" : {
+      "id" : "AffineTransform",
+      "properties" : {
+        "m00" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "m10" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "m01" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "m11" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "m02" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "m12" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "determinant" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "scaleX" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "scaleY" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "shearX" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "shearY" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "translateX" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "translateY" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "toIdentity" : {
+          "type" : "void"
+        },
+        "toTranslation" : {
+          "type" : "void"
+        },
+        "toRotation" : {
+          "type" : "void"
+        },
+        "toQuadrantRotation" : {
+          "type" : "void"
+        },
+        "toScale" : {
+          "type" : "void"
+        },
+        "toShear" : {
+          "type" : "void"
+        },
+        "transform" : {
+          "type" : "void"
+        },
+        "identity" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "Frame" : {
+      "id" : "Frame",
+      "properties" : {
+        "x" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "y" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "width" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "height" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "foreground" : {
+          "type" : "Color"
+        },
+        "background" : {
+          "type" : "Color"
+        },
+        "font" : {
+          "type" : "Font"
+        },
+        "peerFont" : {
+          "type" : "Font"
+        },
+        "locale" : {
+          "type" : "Locale"
+        },
+        "ignoreRepaint" : {
+          "type" : "boolean"
+        },
+        "visible" : {
+          "type" : "boolean"
+        },
+        "enabled" : {
+          "type" : "boolean"
+        },
+        "valid" : {
+          "type" : "boolean"
+        },
+        "dropTarget" : {
+          "type" : "DropTarget"
+        },
+        "popups" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "PopupMenu"
+          }
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "nameExplicitlySet" : {
+          "type" : "boolean"
+        },
+        "focusable" : {
+          "type" : "boolean"
+        },
+        "isFocusTraversableOverridden" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "focusTraversalKeys" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "array"
+          },
+          "uniqueItems" : true
+        },
+        "focusTraversalKeysEnabled" : {
+          "type" : "boolean"
+        },
+        "minSize" : {
+          "type" : "Dimension"
+        },
+        "minSizeSet" : {
+          "type" : "boolean"
+        },
+        "prefSize" : {
+          "type" : "Dimension"
+        },
+        "prefSizeSet" : {
+          "type" : "boolean"
+        },
+        "maxSize" : {
+          "type" : "Dimension"
+        },
+        "maxSizeSet" : {
+          "type" : "boolean"
+        },
+        "newEventsOnly" : {
+          "type" : "boolean"
+        },
+        "eventMask" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "changeSupport" : {
+          "type" : "PropertyChangeSupport"
+        },
+        "isPacked" : {
+          "type" : "boolean"
+        },
+        "boundsOp" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "autoFocusTransferOnDisposal" : {
+          "type" : "boolean"
+        },
+        "componentSerializedDataVersion" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "accessibleContext" : {
+          "type" : "AccessibleContext"
+        },
+        "graphicsConfiguration" : {
+          "type" : "GraphicsConfiguration"
+        },
+        "treeLock" : {
+          "type" : "Object"
+        },
+        "toolkit" : {
+          "type" : "Toolkit"
+        },
+        "displayable" : {
+          "type" : "boolean"
+        },
+        "mousePosition" : {
+          "type" : "Point"
+        },
+        "showing" : {
+          "type" : "boolean"
+        },
+        "doubleBuffered" : {
+          "type" : "boolean"
+        },
+        "foregroundSet" : {
+          "type" : "boolean"
+        },
+        "backgroundSet" : {
+          "type" : "boolean"
+        },
+        "fontSet" : {
+          "type" : "boolean"
+        },
+        "colorModel" : {
+          "type" : "ColorModel"
+        },
+        "location" : {
+          "type" : "Point"
+        },
+        "locationOnScreen" : {
+          "type" : "Point"
+        },
+        "size" : {
+          "type" : "Dimension"
+        },
+        "bounds" : {
+          "type" : "Rectangle"
+        },
+        "opaque" : {
+          "type" : "boolean"
+        },
+        "lightweight" : {
+          "type" : "boolean"
+        },
+        "preferredSize" : {
+          "type" : "Dimension"
+        },
+        "preferredSizeSet" : {
+          "type" : "boolean"
+        },
+        "minimumSize" : {
+          "type" : "Dimension"
+        },
+        "minimumSizeSet" : {
+          "type" : "boolean"
+        },
+        "maximumSize" : {
+          "type" : "Dimension"
+        },
+        "maximumSizeSet" : {
+          "type" : "boolean"
+        },
+        "alignmentX" : {
+          "type" : "number",
+          "format" : "float"
+        },
+        "alignmentY" : {
+          "type" : "number",
+          "format" : "float"
+        },
+        "baselineResizeBehavior" : {
+          "type" : "string",
+          "enum" : [ "CONSTANT_ASCENT", "CONSTANT_DESCENT", "CENTER_OFFSET", "OTHER" ]
+        },
+        "graphics" : {
+          "type" : "Graphics"
+        },
+        "cursorSet" : {
+          "type" : "boolean"
+        },
+        "componentListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "ComponentListener"
+          }
+        },
+        "focusListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "FocusListener"
+          }
+        },
+        "hierarchyListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "HierarchyListener"
+          }
+        },
+        "hierarchyBoundsListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "HierarchyBoundsListener"
+          }
+        },
+        "keyListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "KeyListener"
+          }
+        },
+        "mouseListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "MouseListener"
+          }
+        },
+        "mouseMotionListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "MouseMotionListener"
+          }
+        },
+        "mouseWheelListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "MouseWheelListener"
+          }
+        },
+        "inputMethodListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "InputMethodListener"
+          }
+        },
+        "inputMethodRequests" : {
+          "type" : "InputMethodRequests"
+        },
+        "focusCycleRootAncestor" : {
+          "type" : "Container"
+        },
+        "focusCycleRoot" : {
+          "type" : "boolean"
+        },
+        "focusOwner" : {
+          "type" : "Component"
+        },
+        "propertyChangeListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "PropertyChangeListener"
+          }
+        },
+        "component" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "Component"
+          }
+        },
+        "layoutMgr" : {
+          "type" : "LayoutManager"
+        },
+        "dispatcher" : {
+          "type" : "LightweightDispatcher"
+        },
+        "focusTraversalPolicyProvider" : {
+          "type" : "boolean"
+        },
+        "containerSerializedDataVersion" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "componentCount" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "components" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "Component"
+          }
+        },
+        "insets" : {
+          "type" : "Insets"
+        },
+        "componentZOrder" : {
+          "type" : "void"
+        },
+        "layout" : {
+          "type" : "LayoutManager"
+        },
+        "validateRoot" : {
+          "type" : "boolean"
+        },
+        "containerListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "ContainerListener"
+          }
+        },
+        "ancestorOf" : {
+          "type" : "boolean"
+        },
+        "focusTraversalPolicySet" : {
+          "type" : "boolean"
+        },
+        "warningString" : {
+          "type" : "string"
+        },
+        "syncLWRequests" : {
+          "type" : "boolean"
+        },
+        "state" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "alwaysOnTop" : {
+          "type" : "boolean"
+        },
+        "modalExclusionType" : {
+          "type" : "string",
+          "enum" : [ "NO_EXCLUDE", "APPLICATION_EXCLUDE", "TOOLKIT_EXCLUDE" ]
+        },
+        "focusMgr" : {
+          "type" : "FocusManager"
+        },
+        "focusableWindowState" : {
+          "type" : "boolean"
+        },
+        "autoRequestFocus" : {
+          "type" : "boolean"
+        },
+        "opacity" : {
+          "type" : "number",
+          "format" : "float"
+        },
+        "shape" : {
+          "type" : "Shape"
+        },
+        "type" : {
+          "type" : "string",
+          "enum" : [ "NORMAL", "UTILITY", "POPUP" ]
+        },
+        "windowSerializedDataVersion" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "locationByPlatform" : {
+          "type" : "boolean"
+        },
+        "iconImages" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "Image"
+          }
+        },
+        "iconImage" : {
+          "type" : "Image"
+        },
+        "owner" : {
+          "type" : "Window"
+        },
+        "ownedWindows" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "Window"
+          }
+        },
+        "windowListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "WindowListener"
+          }
+        },
+        "windowFocusListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "WindowFocusListener"
+          }
+        },
+        "windowStateListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "WindowStateListener"
+          }
+        },
+        "alwaysOnTopSupported" : {
+          "type" : "boolean"
+        },
+        "mostRecentFocusOwner" : {
+          "type" : "Component"
+        },
+        "active" : {
+          "type" : "boolean"
+        },
+        "focused" : {
+          "type" : "boolean"
+        },
+        "focusableWindow" : {
+          "type" : "boolean"
+        },
+        "locationRelativeTo" : {
+          "type" : "void"
+        },
+        "bufferStrategy" : {
+          "type" : "BufferStrategy"
+        },
+        "maximizedBounds" : {
+          "type" : "Rectangle"
+        },
+        "title" : {
+          "type" : "string"
+        },
+        "menuBar" : {
+          "type" : "MenuBar"
+        },
+        "resizable" : {
+          "type" : "boolean"
+        },
+        "undecorated" : {
+          "type" : "boolean"
+        },
+        "mbManagement" : {
+          "type" : "boolean"
+        },
+        "frameSerializedDataVersion" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "extendedState" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "Shape" : {
+      "id" : "Shape",
+      "properties" : {
+        "bounds" : {
+          "type" : "Rectangle"
+        },
+        "bounds2D" : {
+          "type" : "Rectangle2D"
+        }
+      }
+    },
+    "MachineResponse" : {
+      "id" : "MachineResponse",
+      "properties" : {
+        "command" : {
+          "type" : "string"
+        },
+        "response" : {
+          "type" : "boolean"
+        },
+        "message" : {
+          "type" : "string"
+        }
+      }
+    },
+    "FocusManager" : {
+      "id" : "FocusManager",
+      "properties" : {
+        "focusRoot" : {
+          "type" : "Container"
+        },
+        "focusOwner" : {
+          "type" : "Component"
+        }
+      }
+    },
+    "SurfaceManager" : {
+      "id" : "SurfaceManager",
+      "properties" : {
+        "cacheMap" : {
+          "type" : "ConcurrentHashMap"
+        },
+        "cacheData" : {
+          "type" : "void"
+        },
+        "primarySurfaceData" : {
+          "type" : "SurfaceData"
+        },
+        "accelerationPriority" : {
+          "type" : "void"
+        }
+      }
+    },
+    "Font" : {
+      "id" : "Font",
+      "properties" : {
+        "fRequestedAttributes" : {
+          "type" : "Hashtable"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "style" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "size" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "pointSize" : {
+          "type" : "number",
+          "format" : "float"
+        },
+        "fontSerializedDataVersion" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "transform" : {
+          "type" : "AffineTransform"
+        },
+        "family" : {
+          "type" : "string"
+        },
+        "pSName" : {
+          "type" : "string"
+        },
+        "fontName" : {
+          "type" : "string"
+        },
+        "size2D" : {
+          "type" : "number",
+          "format" : "float"
+        },
+        "plain" : {
+          "type" : "boolean"
+        },
+        "bold" : {
+          "type" : "boolean"
+        },
+        "italic" : {
+          "type" : "boolean"
+        },
+        "transformed" : {
+          "type" : "boolean"
+        },
+        "numGlyphs" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "missingGlyphCode" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "attributes" : {
+          "type" : "Map"
+        },
+        "availableAttributes" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "AttributedCharacterIterator-Attribute"
+          }
+        },
+        "italicAngle" : {
+          "type" : "number",
+          "format" : "float"
+        }
+      }
+    },
+    "DataFlavor" : {
+      "id" : "DataFlavor",
+      "properties" : {
+        "mimeType" : {
+          "type" : "string"
+        },
+        "humanPresentableName" : {
+          "type" : "string"
+        },
+        "representationClass" : {
+          "type" : "Class"
+        },
+        "primaryType" : {
+          "type" : "string"
+        },
+        "subType" : {
+          "type" : "string"
+        },
+        "mimeTypeEqual" : {
+          "type" : "boolean"
+        },
+        "mimeTypeSerializedObject" : {
+          "type" : "boolean"
+        },
+        "defaultRepresentationClass" : {
+          "type" : "Class"
+        },
+        "defaultRepresentationClassAsString" : {
+          "type" : "string"
+        },
+        "representationClassInputStream" : {
+          "type" : "boolean"
+        },
+        "representationClassReader" : {
+          "type" : "boolean"
+        },
+        "representationClassCharBuffer" : {
+          "type" : "boolean"
+        },
+        "representationClassByteBuffer" : {
+          "type" : "boolean"
+        },
+        "representationClassSerializable" : {
+          "type" : "boolean"
+        },
+        "representationClassRemote" : {
+          "type" : "boolean"
+        },
+        "flavorSerializedObjectType" : {
+          "type" : "boolean"
+        },
+        "flavorRemoteObjectType" : {
+          "type" : "boolean"
+        },
+        "flavorJavaFileListType" : {
+          "type" : "boolean"
+        },
+        "flavorTextType" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "FontMetrics" : {
+      "id" : "FontMetrics",
+      "properties" : {
+        "font" : {
+          "type" : "Font"
+        },
+        "fontRenderContext" : {
+          "type" : "FontRenderContext"
+        },
+        "leading" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "ascent" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "descent" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "height" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "maxAscent" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "maxDescent" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "maxAdvance" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "widths" : {
+          "type" : "array",
+          "items" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }
+      }
+    },
+    "ThreadGroup" : {
+      "id" : "ThreadGroup",
+      "properties" : {
+        "parent" : {
+          "type" : "ThreadGroup"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "maxPriority" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "destroyed" : {
+          "type" : "boolean"
+        },
+        "daemon" : {
+          "type" : "boolean"
+        },
+        "vmAllowSuspension" : {
+          "type" : "boolean"
+        },
+        "nUnstartedThreads" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "nthreads" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "threads" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "Thread"
+          }
+        },
+        "ngroups" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "groups" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "ThreadGroup"
+          }
+        }
+      }
+    },
+    "Toolkit" : {
+      "id" : "Toolkit",
+      "properties" : {
+        "desktopProperties" : {
+          "type" : "Map"
+        },
+        "desktopPropsSupport" : {
+          "type" : "PropertyChangeSupport"
+        },
+        "calls" : {
+          "type" : "array",
+          "items" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        },
+        "eventListener" : {
+          "type" : "AWTEventListener"
+        },
+        "listener2SelectiveListener" : {
+          "type" : "WeakHashMap"
+        },
+        "mouseInfoPeer" : {
+          "type" : "MouseInfoPeer"
+        },
+        "dynamicLayout" : {
+          "type" : "void"
+        },
+        "dynamicLayoutSet" : {
+          "type" : "boolean"
+        },
+        "dynamicLayoutActive" : {
+          "type" : "boolean"
+        },
+        "screenSize" : {
+          "type" : "Dimension"
+        },
+        "screenResolution" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "colorModel" : {
+          "type" : "ColorModel"
+        },
+        "systemClipboard" : {
+          "type" : "Clipboard"
+        },
+        "systemSelection" : {
+          "type" : "Clipboard"
+        },
+        "menuShortcutKeyMask" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "lockingKeyState" : {
+          "type" : "void"
+        },
+        "maximumCursorColors" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "frameStateSupported" : {
+          "type" : "boolean"
+        },
+        "systemEventQueue" : {
+          "type" : "EventQueue"
+        },
+        "systemEventQueueImpl" : {
+          "type" : "EventQueue"
+        },
+        "desktopProperty" : {
+          "type" : "void"
+        },
+        "propertyChangeListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "PropertyChangeListener"
+          }
+        },
+        "alwaysOnTopSupported" : {
+          "type" : "boolean"
+        },
+        "modalityTypeSupported" : {
+          "type" : "boolean"
+        },
+        "modalExclusionTypeSupported" : {
+          "type" : "boolean"
+        },
+        "aWTEventListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "AWTEventListener"
+          }
+        }
+      }
+    },
+    "Menu" : {
+      "id" : "Menu",
+      "properties" : {
+        "font" : {
+          "type" : "Font"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "nameExplicitlySet" : {
+          "type" : "boolean"
+        },
+        "newEventsOnly" : {
+          "type" : "boolean"
+        },
+        "accessibleContext" : {
+          "type" : "AccessibleContext"
+        },
+        "treeLock" : {
+          "type" : "Object"
+        },
+        "enabled" : {
+          "type" : "boolean"
+        },
+        "label" : {
+          "type" : "string"
+        },
+        "actionCommand" : {
+          "type" : "string"
+        },
+        "eventMask" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "shortcut" : {
+          "type" : "MenuShortcut"
+        },
+        "menuItemSerializedDataVersion" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "actionListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "ActionListener"
+          }
+        },
+        "items" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "MenuComponent"
+          }
+        },
+        "tearOff" : {
+          "type" : "boolean"
+        },
+        "isHelpMenu" : {
+          "type" : "boolean"
+        },
+        "menuSerializedDataVersion" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "itemCount" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "ThreadLocal-ThreadLocalMap" : {
+      "id" : "ThreadLocal-ThreadLocalMap",
+      "properties" : {
+        "table" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "ThreadLocal-ThreadLocalMap-Entry"
+          }
+        },
+        "size" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "threshold" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "DataBuffer" : {
+      "id" : "DataBuffer",
+      "properties" : {
+        "dataType" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "banks" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "offset" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "size" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "offsets" : {
+          "type" : "array",
+          "items" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        },
+        "theTrackable" : {
+          "type" : "StateTrackableDelegate"
+        },
+        "numBanks" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "elem" : {
+          "type" : "void"
+        },
+        "elemFloat" : {
+          "type" : "void"
+        },
+        "elemDouble" : {
+          "type" : "void"
+        }
+      }
+    },
+    "Window" : {
+      "id" : "Window",
+      "properties" : {
+        "x" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "y" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "width" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "height" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "foreground" : {
+          "type" : "Color"
+        },
+        "background" : {
+          "type" : "Color"
+        },
+        "font" : {
+          "type" : "Font"
+        },
+        "peerFont" : {
+          "type" : "Font"
+        },
+        "cursor" : {
+          "type" : "Cursor"
+        },
+        "locale" : {
+          "type" : "Locale"
+        },
+        "ignoreRepaint" : {
+          "type" : "boolean"
+        },
+        "visible" : {
+          "type" : "boolean"
+        },
+        "enabled" : {
+          "type" : "boolean"
+        },
+        "valid" : {
+          "type" : "boolean"
+        },
+        "dropTarget" : {
+          "type" : "DropTarget"
+        },
+        "popups" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "PopupMenu"
+          }
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "nameExplicitlySet" : {
+          "type" : "boolean"
+        },
+        "focusable" : {
+          "type" : "boolean"
+        },
+        "isFocusTraversableOverridden" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "focusTraversalKeys" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "array"
+          },
+          "uniqueItems" : true
+        },
+        "focusTraversalKeysEnabled" : {
+          "type" : "boolean"
+        },
+        "minSize" : {
+          "type" : "Dimension"
+        },
+        "minSizeSet" : {
+          "type" : "boolean"
+        },
+        "prefSize" : {
+          "type" : "Dimension"
+        },
+        "prefSizeSet" : {
+          "type" : "boolean"
+        },
+        "maxSize" : {
+          "type" : "Dimension"
+        },
+        "maxSizeSet" : {
+          "type" : "boolean"
+        },
+        "newEventsOnly" : {
+          "type" : "boolean"
+        },
+        "eventMask" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "changeSupport" : {
+          "type" : "PropertyChangeSupport"
+        },
+        "isPacked" : {
+          "type" : "boolean"
+        },
+        "boundsOp" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "autoFocusTransferOnDisposal" : {
+          "type" : "boolean"
+        },
+        "componentSerializedDataVersion" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "accessibleContext" : {
+          "type" : "AccessibleContext"
+        },
+        "graphicsConfiguration" : {
+          "type" : "GraphicsConfiguration"
+        },
+        "treeLock" : {
+          "type" : "Object"
+        },
+        "toolkit" : {
+          "type" : "Toolkit"
+        },
+        "displayable" : {
+          "type" : "boolean"
+        },
+        "mousePosition" : {
+          "type" : "Point"
+        },
+        "showing" : {
+          "type" : "boolean"
+        },
+        "doubleBuffered" : {
+          "type" : "boolean"
+        },
+        "foregroundSet" : {
+          "type" : "boolean"
+        },
+        "backgroundSet" : {
+          "type" : "boolean"
+        },
+        "fontSet" : {
+          "type" : "boolean"
+        },
+        "colorModel" : {
+          "type" : "ColorModel"
+        },
+        "location" : {
+          "type" : "Point"
+        },
+        "locationOnScreen" : {
+          "type" : "Point"
+        },
+        "size" : {
+          "type" : "Dimension"
+        },
+        "bounds" : {
+          "type" : "Rectangle"
+        },
+        "opaque" : {
+          "type" : "boolean"
+        },
+        "lightweight" : {
+          "type" : "boolean"
+        },
+        "preferredSize" : {
+          "type" : "Dimension"
+        },
+        "preferredSizeSet" : {
+          "type" : "boolean"
+        },
+        "minimumSize" : {
+          "type" : "Dimension"
+        },
+        "minimumSizeSet" : {
+          "type" : "boolean"
+        },
+        "maximumSize" : {
+          "type" : "Dimension"
+        },
+        "maximumSizeSet" : {
+          "type" : "boolean"
+        },
+        "alignmentX" : {
+          "type" : "number",
+          "format" : "float"
+        },
+        "alignmentY" : {
+          "type" : "number",
+          "format" : "float"
+        },
+        "baselineResizeBehavior" : {
+          "type" : "string",
+          "enum" : [ "CONSTANT_ASCENT", "CONSTANT_DESCENT", "CENTER_OFFSET", "OTHER" ]
+        },
+        "graphics" : {
+          "type" : "Graphics"
+        },
+        "cursorSet" : {
+          "type" : "boolean"
+        },
+        "componentListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "ComponentListener"
+          }
+        },
+        "focusListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "FocusListener"
+          }
+        },
+        "hierarchyListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "HierarchyListener"
+          }
+        },
+        "hierarchyBoundsListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "HierarchyBoundsListener"
+          }
+        },
+        "keyListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "KeyListener"
+          }
+        },
+        "mouseListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "MouseListener"
+          }
+        },
+        "mouseMotionListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "MouseMotionListener"
+          }
+        },
+        "mouseWheelListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "MouseWheelListener"
+          }
+        },
+        "inputMethodListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "InputMethodListener"
+          }
+        },
+        "inputMethodRequests" : {
+          "type" : "InputMethodRequests"
+        },
+        "focusCycleRootAncestor" : {
+          "type" : "Container"
+        },
+        "focusCycleRoot" : {
+          "type" : "boolean"
+        },
+        "focusOwner" : {
+          "type" : "Component"
+        },
+        "propertyChangeListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "PropertyChangeListener"
+          }
+        },
+        "component" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "Component"
+          }
+        },
+        "layoutMgr" : {
+          "type" : "LayoutManager"
+        },
+        "dispatcher" : {
+          "type" : "LightweightDispatcher"
+        },
+        "focusTraversalPolicyProvider" : {
+          "type" : "boolean"
+        },
+        "containerSerializedDataVersion" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "componentCount" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "components" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "Component"
+          }
+        },
+        "insets" : {
+          "type" : "Insets"
+        },
+        "componentZOrder" : {
+          "type" : "void"
+        },
+        "layout" : {
+          "type" : "LayoutManager"
+        },
+        "validateRoot" : {
+          "type" : "boolean"
+        },
+        "containerListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "ContainerListener"
+          }
+        },
+        "ancestorOf" : {
+          "type" : "boolean"
+        },
+        "focusTraversalPolicySet" : {
+          "type" : "boolean"
+        },
+        "warningString" : {
+          "type" : "string"
+        },
+        "syncLWRequests" : {
+          "type" : "boolean"
+        },
+        "state" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "alwaysOnTop" : {
+          "type" : "boolean"
+        },
+        "modalExclusionType" : {
+          "type" : "string",
+          "enum" : [ "NO_EXCLUDE", "APPLICATION_EXCLUDE", "TOOLKIT_EXCLUDE" ]
+        },
+        "focusMgr" : {
+          "type" : "FocusManager"
+        },
+        "focusableWindowState" : {
+          "type" : "boolean"
+        },
+        "autoRequestFocus" : {
+          "type" : "boolean"
+        },
+        "opacity" : {
+          "type" : "number",
+          "format" : "float"
+        },
+        "shape" : {
+          "type" : "Shape"
+        },
+        "type" : {
+          "type" : "string",
+          "enum" : [ "NORMAL", "UTILITY", "POPUP" ]
+        },
+        "windowSerializedDataVersion" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "locationByPlatform" : {
+          "type" : "boolean"
+        },
+        "iconImages" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "Image"
+          }
+        },
+        "iconImage" : {
+          "type" : "void"
+        },
+        "owner" : {
+          "type" : "Window"
+        },
+        "ownedWindows" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "Window"
+          }
+        },
+        "windowListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "WindowListener"
+          }
+        },
+        "windowFocusListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "WindowFocusListener"
+          }
+        },
+        "windowStateListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "WindowStateListener"
+          }
+        },
+        "alwaysOnTopSupported" : {
+          "type" : "boolean"
+        },
+        "mostRecentFocusOwner" : {
+          "type" : "Component"
+        },
+        "active" : {
+          "type" : "boolean"
+        },
+        "focused" : {
+          "type" : "boolean"
+        },
+        "focusableWindow" : {
+          "type" : "boolean"
+        },
+        "locationRelativeTo" : {
+          "type" : "void"
+        },
+        "bufferStrategy" : {
+          "type" : "BufferStrategy"
+        }
+      }
+    },
+    "ImageConsumer" : {
+      "id" : "ImageConsumer",
+      "properties" : {
+        "dimensions" : {
+          "type" : "void"
+        },
+        "properties" : {
+          "type" : "void"
+        },
+        "colorModel" : {
+          "type" : "void"
+        },
+        "hints" : {
+          "type" : "void"
+        },
+        "pixels" : {
+          "type" : "void"
+        }
+      }
+    },
+    "AppContext" : {
+      "id" : "AppContext",
+      "properties" : {
+        "table" : {
+          "type" : "Map"
+        },
+        "threadGroup" : {
+          "type" : "ThreadGroup"
+        },
+        "changeSupport" : {
+          "type" : "PropertyChangeSupport"
+        },
+        "state" : {
+          "type" : "string",
+          "enum" : [ "VALID", "BEING_DISPOSED", "DISPOSED" ]
+        },
+        "contextClassLoader" : {
+          "type" : "ClassLoader"
+        },
+        "DISPOSAL_TIMEOUT" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "THREAD_INTERRUPT_TIMEOUT" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "mostRecentKeyValue" : {
+          "type" : "MostRecentKeyValue"
+        },
+        "shadowMostRecentKeyValue" : {
+          "type" : "MostRecentKeyValue"
+        },
+        "disposed" : {
+          "type" : "boolean"
+        },
+        "propertyChangeListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "PropertyChangeListener"
+          }
+        }
+      }
+    },
+    "Rectangle2D" : {
+      "id" : "Rectangle2D",
+      "properties" : {
+        "x" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "y" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "width" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "height" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "minX" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "minY" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "maxX" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "maxY" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "centerX" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "centerY" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "frame" : {
+          "type" : "Rectangle2D"
+        },
+        "empty" : {
+          "type" : "boolean"
+        },
+        "frameFromDiagonal" : {
+          "type" : "void"
+        },
+        "frameFromCenter" : {
+          "type" : "void"
+        },
+        "bounds" : {
+          "type" : "Rectangle"
+        },
+        "rect" : {
+          "type" : "void"
+        },
+        "bounds2D" : {
+          "type" : "Rectangle2D"
+        }
+      }
+    },
+    "MenuComponent" : {
+      "id" : "MenuComponent",
+      "properties" : {
+        "font" : {
+          "type" : "Font"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "nameExplicitlySet" : {
+          "type" : "boolean"
+        },
+        "newEventsOnly" : {
+          "type" : "boolean"
+        },
+        "accessibleContext" : {
+          "type" : "AccessibleContext"
+        },
+        "treeLock" : {
+          "type" : "Object"
+        }
+      }
+    },
+    "Dimension" : {
+      "id" : "Dimension",
+      "properties" : {
+        "width" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "height" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "size" : {
+          "type" : "Dimension"
+        }
+      }
+    },
+    "Thread" : {
+      "id" : "Thread",
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        },
+        "priority" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "threadQ" : {
+          "type" : "Thread"
+        },
+        "eetop" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "single_step" : {
+          "type" : "boolean"
+        },
+        "daemon" : {
+          "type" : "boolean"
+        },
+        "stillborn" : {
+          "type" : "boolean"
+        },
+        "target" : {
+          "type" : "Runnable"
+        },
+        "group" : {
+          "type" : "ThreadGroup"
+        },
+        "contextClassLoader" : {
+          "type" : "ClassLoader"
+        },
+        "inheritedAccessControlContext" : {
+          "type" : "AccessControlContext"
+        },
+        "threadLocals" : {
+          "type" : "ThreadLocal-ThreadLocalMap"
+        },
+        "inheritableThreadLocals" : {
+          "type" : "ThreadLocal-ThreadLocalMap"
+        },
+        "stackSize" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "nativeParkEventPointer" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "tid" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "threadStatus" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "parkBlocker" : {
+          "type" : "Object"
+        },
+        "blocker" : {
+          "type" : "Interruptible"
+        },
+        "blockerLock" : {
+          "type" : "Object"
+        },
+        "uncaughtExceptionHandler" : {
+          "type" : "Thread-UncaughtExceptionHandler"
+        },
+        "threadLocalRandomSeed" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "threadLocalRandomProbe" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "threadLocalRandomSecondarySeed" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "interrupted" : {
+          "type" : "boolean"
+        },
+        "alive" : {
+          "type" : "boolean"
+        },
+        "threadGroup" : {
+          "type" : "ThreadGroup"
+        },
+        "stackTrace" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "StackTraceElement"
+          }
+        },
+        "id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "state" : {
+          "type" : "string",
+          "enum" : [ "NEW", "RUNNABLE", "BLOCKED", "WAITING", "TIMED_WAITING", "TERMINATED" ]
+        }
+      }
+    },
+    "Graphics" : {
+      "id" : "Graphics",
+      "properties" : {
+        "color" : {
+          "type" : "Color"
+        },
+        "paintMode" : {
+          "type" : "void"
+        },
+        "xORMode" : {
+          "type" : "void"
+        },
+        "font" : {
+          "type" : "Font"
+        },
+        "fontMetrics" : {
+          "type" : "FontMetrics"
+        },
+        "clipBounds" : {
+          "type" : "Rectangle"
+        },
+        "clip" : {
+          "type" : "Shape"
+        }
+      }
+    },
+    "InputMethodRequests" : {
+      "id" : "InputMethodRequests",
+      "properties" : {
+        "insertPositionOffset" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "committedTextLength" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "Clipboard" : {
+      "id" : "Clipboard",
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        },
+        "owner" : {
+          "type" : "ClipboardOwner"
+        },
+        "contents" : {
+          "type" : "Transferable"
+        },
+        "flavorListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "FlavorListener"
+          }
+        },
+        "currentDataFlavors" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "DataFlavor"
+          },
+          "uniqueItems" : true
+        },
+        "availableDataFlavors" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "DataFlavor"
+          }
+        },
+        "dataFlavorAvailable" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "RenderedImage" : {
+      "id" : "RenderedImage",
+      "properties" : {
+        "sources" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "RenderedImage"
+          }
+        },
+        "propertyNames" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "colorModel" : {
+          "type" : "ColorModel"
+        },
+        "sampleModel" : {
+          "type" : "SampleModel"
+        },
+        "width" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "height" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "minX" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "minY" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "numXTiles" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "numYTiles" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "minTileX" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "minTileY" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "tileWidth" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "tileHeight" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "tileGridXOffset" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "tileGridYOffset" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "data" : {
+          "type" : "Raster"
+        }
+      }
+    },
+    "Locale" : {
+      "id" : "Locale",
+      "properties" : {
+        "language" : {
+          "type" : "string"
+        },
+        "script" : {
+          "type" : "string"
+        },
+        "country" : {
+          "type" : "string"
+        },
+        "variant" : {
+          "type" : "string"
+        },
+        "extensionKeys" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          },
+          "uniqueItems" : true
+        },
+        "unicodeLocaleAttributes" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          },
+          "uniqueItems" : true
+        },
+        "unicodeLocaleKeys" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          },
+          "uniqueItems" : true
+        },
+        "iSO3Language" : {
+          "type" : "string"
+        },
+        "iSO3Country" : {
+          "type" : "string"
+        },
+        "displayLanguage" : {
+          "type" : "string"
+        },
+        "displayScript" : {
+          "type" : "string"
+        },
+        "displayCountry" : {
+          "type" : "string"
+        },
+        "displayVariant" : {
+          "type" : "string"
+        },
+        "displayName" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ProtectionDomain" : {
+      "id" : "ProtectionDomain",
+      "properties" : {
+        "codesource" : {
+          "type" : "CodeSource"
+        },
+        "classloader" : {
+          "type" : "ClassLoader"
+        },
+        "principals" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "Principal"
+          }
+        },
+        "permissions" : {
+          "type" : "PermissionCollection"
+        },
+        "hasAllPerm" : {
+          "type" : "boolean"
+        },
+        "staticPermissions" : {
+          "type" : "boolean"
+        },
+        "key" : {
+          "type" : "ProtectionDomain-Key"
+        },
+        "codeSource" : {
+          "type" : "CodeSource"
+        },
+        "classLoader" : {
+          "type" : "ClassLoader"
+        }
+      }
+    },
+    "ColorSpace" : {
+      "id" : "ColorSpace",
+      "properties" : {
+        "type" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "numComponents" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "cS_sRGB" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "PropertyChangeSupport" : {
+      "id" : "PropertyChangeSupport",
+      "properties" : {
+        "map" : {
+          "type" : "PropertyChangeSupport-PropertyChangeListenerMap"
+        },
+        "source" : {
+          "type" : "Object"
+        },
+        "propertyChangeListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "PropertyChangeListener"
+          }
+        }
+      }
+    },
+    "MenuContainer" : {
+      "id" : "MenuContainer",
+      "properties" : {
+        "font" : {
+          "type" : "Font"
+        }
+      }
+    },
+    "Printer" : {
+      "id" : "Printer",
+      "properties" : {
+        "configuration" : {
+          "type" : "PrinterConfiguration"
+        },
+        "refreshFrame" : {
+          "type" : "Frame"
+        },
+        "displayState" : {
+          "type" : "string",
+          "enum" : [ "Calibration", "Grid", "Blank", "CurrentSlice" ]
+        },
+        "gridSquareSize" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "calibrationXY" : {
+          "type" : "Point"
+        },
+        "displayImage" : {
+          "type" : "BufferedImage"
+        },
+        "shutterOpen" : {
+          "type" : "boolean"
+        },
+        "displayDeviceID" : {
+          "type" : "string"
+        },
+        "currentSlicePauseTime" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "sliceNumber" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "defaultFont" : {
+          "type" : "Font"
+        },
+        "frameInsets" : {
+          "type" : "Insets"
+        },
+        "statusLock" : {
+          "type" : "ReentrantLock"
+        },
+        "jobContinued" : {
+          "type" : "Condition"
+        },
+        "graphicsData" : {
+          "type" : "void"
+        },
+        "projectorPowerStatus" : {
+          "type" : "void"
+        },
+        "cachedBulbHours" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "Cursor" : {
+      "id" : "Cursor",
+      "properties" : {
+        "type" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "name" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Container" : {
+      "id" : "Container",
+      "properties" : {
+        "x" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "y" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "width" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "height" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "foreground" : {
+          "type" : "Color"
+        },
+        "background" : {
+          "type" : "Color"
+        },
+        "font" : {
+          "type" : "Font"
+        },
+        "peerFont" : {
+          "type" : "Font"
+        },
+        "cursor" : {
+          "type" : "Cursor"
+        },
+        "locale" : {
+          "type" : "Locale"
+        },
+        "ignoreRepaint" : {
+          "type" : "boolean"
+        },
+        "visible" : {
+          "type" : "boolean"
+        },
+        "enabled" : {
+          "type" : "boolean"
+        },
+        "valid" : {
+          "type" : "boolean"
+        },
+        "dropTarget" : {
+          "type" : "DropTarget"
+        },
+        "popups" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "PopupMenu"
+          }
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "nameExplicitlySet" : {
+          "type" : "boolean"
+        },
+        "focusable" : {
+          "type" : "boolean"
+        },
+        "isFocusTraversableOverridden" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "focusTraversalKeys" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "array"
+          },
+          "uniqueItems" : true
+        },
+        "focusTraversalKeysEnabled" : {
+          "type" : "boolean"
+        },
+        "minSize" : {
+          "type" : "Dimension"
+        },
+        "minSizeSet" : {
+          "type" : "boolean"
+        },
+        "prefSize" : {
+          "type" : "Dimension"
+        },
+        "prefSizeSet" : {
+          "type" : "boolean"
+        },
+        "maxSize" : {
+          "type" : "Dimension"
+        },
+        "maxSizeSet" : {
+          "type" : "boolean"
+        },
+        "newEventsOnly" : {
+          "type" : "boolean"
+        },
+        "eventMask" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "changeSupport" : {
+          "type" : "PropertyChangeSupport"
+        },
+        "isPacked" : {
+          "type" : "boolean"
+        },
+        "boundsOp" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "autoFocusTransferOnDisposal" : {
+          "type" : "boolean"
+        },
+        "componentSerializedDataVersion" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "accessibleContext" : {
+          "type" : "AccessibleContext"
+        },
+        "graphicsConfiguration" : {
+          "type" : "GraphicsConfiguration"
+        },
+        "treeLock" : {
+          "type" : "Object"
+        },
+        "toolkit" : {
+          "type" : "Toolkit"
+        },
+        "displayable" : {
+          "type" : "boolean"
+        },
+        "mousePosition" : {
+          "type" : "Point"
+        },
+        "showing" : {
+          "type" : "boolean"
+        },
+        "doubleBuffered" : {
+          "type" : "boolean"
+        },
+        "foregroundSet" : {
+          "type" : "boolean"
+        },
+        "backgroundSet" : {
+          "type" : "boolean"
+        },
+        "fontSet" : {
+          "type" : "boolean"
+        },
+        "colorModel" : {
+          "type" : "ColorModel"
+        },
+        "location" : {
+          "type" : "Point"
+        },
+        "locationOnScreen" : {
+          "type" : "Point"
+        },
+        "size" : {
+          "type" : "Dimension"
+        },
+        "bounds" : {
+          "type" : "Rectangle"
+        },
+        "opaque" : {
+          "type" : "boolean"
+        },
+        "lightweight" : {
+          "type" : "boolean"
+        },
+        "preferredSize" : {
+          "type" : "Dimension"
+        },
+        "preferredSizeSet" : {
+          "type" : "boolean"
+        },
+        "minimumSize" : {
+          "type" : "Dimension"
+        },
+        "minimumSizeSet" : {
+          "type" : "boolean"
+        },
+        "maximumSize" : {
+          "type" : "Dimension"
+        },
+        "maximumSizeSet" : {
+          "type" : "boolean"
+        },
+        "alignmentX" : {
+          "type" : "number",
+          "format" : "float"
+        },
+        "alignmentY" : {
+          "type" : "number",
+          "format" : "float"
+        },
+        "baselineResizeBehavior" : {
+          "type" : "string",
+          "enum" : [ "CONSTANT_ASCENT", "CONSTANT_DESCENT", "CENTER_OFFSET", "OTHER" ]
+        },
+        "graphics" : {
+          "type" : "Graphics"
+        },
+        "cursorSet" : {
+          "type" : "boolean"
+        },
+        "componentListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "ComponentListener"
+          }
+        },
+        "focusListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "FocusListener"
+          }
+        },
+        "hierarchyListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "HierarchyListener"
+          }
+        },
+        "hierarchyBoundsListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "HierarchyBoundsListener"
+          }
+        },
+        "keyListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "KeyListener"
+          }
+        },
+        "mouseListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "MouseListener"
+          }
+        },
+        "mouseMotionListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "MouseMotionListener"
+          }
+        },
+        "mouseWheelListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "MouseWheelListener"
+          }
+        },
+        "inputMethodListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "InputMethodListener"
+          }
+        },
+        "inputMethodRequests" : {
+          "type" : "InputMethodRequests"
+        },
+        "inputContext" : {
+          "type" : "InputContext"
+        },
+        "focusCycleRootAncestor" : {
+          "type" : "Container"
+        },
+        "focusCycleRoot" : {
+          "type" : "boolean"
+        },
+        "focusOwner" : {
+          "type" : "boolean"
+        },
+        "propertyChangeListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "PropertyChangeListener"
+          }
+        },
+        "component" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "Component"
+          }
+        },
+        "layoutMgr" : {
+          "type" : "LayoutManager"
+        },
+        "dispatcher" : {
+          "type" : "LightweightDispatcher"
+        },
+        "focusTraversalPolicyProvider" : {
+          "type" : "boolean"
+        },
+        "containerSerializedDataVersion" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "componentCount" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "components" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "Component"
+          }
+        },
+        "insets" : {
+          "type" : "Insets"
+        },
+        "componentZOrder" : {
+          "type" : "void"
+        },
+        "layout" : {
+          "type" : "LayoutManager"
+        },
+        "validateRoot" : {
+          "type" : "boolean"
+        },
+        "containerListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "ContainerListener"
+          }
+        },
+        "ancestorOf" : {
+          "type" : "boolean"
+        },
+        "focusTraversalPolicySet" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "GraphicsDevice" : {
+      "id" : "GraphicsDevice",
+      "properties" : {
+        "fullScreenWindow" : {
+          "type" : "Window"
+        },
+        "fullScreenAppContext" : {
+          "type" : "AppContext"
+        },
+        "fsAppContextLock" : {
+          "type" : "Object"
+        },
+        "windowedModeBounds" : {
+          "type" : "Rectangle"
+        },
+        "type" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "iDstring" : {
+          "type" : "string"
+        },
+        "configurations" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "GraphicsConfiguration"
+          }
+        },
+        "defaultConfiguration" : {
+          "type" : "GraphicsConfiguration"
+        },
+        "fullScreenSupported" : {
+          "type" : "boolean"
+        },
+        "displayChangeSupported" : {
+          "type" : "boolean"
+        },
+        "displayMode" : {
+          "type" : "DisplayMode"
+        },
+        "displayModes" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "DisplayMode"
+          }
+        },
+        "availableAcceleratedMemory" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "windowTranslucencySupported" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "AccessControlContext" : {
+      "id" : "AccessControlContext",
+      "properties" : {
+        "context" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "ProtectionDomain"
+          }
+        },
+        "isPrivileged" : {
+          "type" : "boolean"
+        },
+        "isAuthorized" : {
+          "type" : "boolean"
+        },
+        "privilegedContext" : {
+          "type" : "AccessControlContext"
+        },
+        "combiner" : {
+          "type" : "DomainCombiner"
+        },
+        "permissions" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "Permission"
+          }
+        },
+        "parent" : {
+          "type" : "AccessControlContext"
+        },
+        "isWrapped" : {
+          "type" : "boolean"
+        },
+        "isLimited" : {
+          "type" : "boolean"
+        },
+        "limitedContext" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "ProtectionDomain"
+          }
+        },
+        "domainCombiner" : {
+          "type" : "DomainCombiner"
+        }
+      }
+    },
+    "PrinterConfiguration" : {
+      "id" : "PrinterConfiguration",
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        },
+        "MachineConfigurationName" : {
+          "type" : "string"
+        },
+        "SlicingProfileName" : {
+          "type" : "string"
+        },
+        "machineConfig" : {
+          "type" : "MachineConfig"
+        },
+        "slicingProfile" : {
+          "type" : "SliceBuildConfig"
+        }
+      }
+    },
+    "AWTEvent" : {
+      "id" : "AWTEvent",
+      "properties" : {
+        "bdata" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string",
+            "format" : "byte"
+          }
+        },
+        "id" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "consumed" : {
+          "type" : "boolean"
+        },
+        "source" : {
+          "type" : "void"
+        },
+        "iD" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "PrintJob" : {
+      "id" : "PrintJob",
+      "properties" : {
+        "totalSlices" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "currentSlice" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "currentSliceTime" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "averageSliceTime" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "startTime" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "elapsedTime" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "totalCost" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "currentSliceCost" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "printFileProcessor" : {
+          "type" : "PrintFileProcessor"
+        },
+        "errorDescription" : {
+          "type" : "string"
+        },
+        "overrideExposureTime" : {
+          "type" : "boolean"
+        },
+        "exposureTime" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "overrideZLiftSpeed" : {
+          "type" : "boolean"
+        },
+        "zLiftSpeed" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "overrideZLiftDistance" : {
+          "type" : "boolean"
+        },
+        "zLiftDistance" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "id" : {
+          "type" : "string",
+          "format" : "uuid"
+        },
+        "printer" : {
+          "type" : "Printer"
+        },
+        "futureJobStatus" : {
+          "type" : "Future"
+        },
+        "futureJobStatusAssigned" : {
+          "type" : "CountDownLatch"
+        },
+        "scriptsByName" : {
+          "type" : "Map"
+        },
+        "jobName" : {
+          "type" : "string"
+        },
+        "status" : {
+          "type" : "string",
+          "enum" : [ "Ready", "Printing", "Failed", "Completed", "Cancelled", "Cancelling", "Deleted", "Paused", "PausedOutOfPrintMaterial", "PausedWithWarning" ]
+        },
+        "zLiftDistanceOverriden" : {
+          "type" : "boolean"
+        },
+        "zLiftSpeedOverriden" : {
+          "type" : "boolean"
+        },
+        "exposureTimeOverriden" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "Color" : {
+      "id" : "Color",
+      "properties" : {
+        "value" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "frgbvalue" : {
+          "type" : "array",
+          "items" : {
+            "type" : "number",
+            "format" : "float"
+          }
+        },
+        "fvalue" : {
+          "type" : "array",
+          "items" : {
+            "type" : "number",
+            "format" : "float"
+          }
+        },
+        "falpha" : {
+          "type" : "number",
+          "format" : "float"
+        },
+        "cs" : {
+          "type" : "ColorSpace"
+        },
+        "alpha" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "rGB" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "colorSpace" : {
+          "type" : "ColorSpace"
+        },
+        "transparency" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "SlicingProfile-InkConfig" : {
+      "id" : "SlicingProfile-InkConfig",
+      "properties" : {
+        "PercentageOfPrintMaterialConsideredEmpty" : {
+          "type" : "number",
+          "format" : "float"
+        },
+        "LayerTime" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "FirstLayerTime" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "detector" : {
+          "type" : "InkDetector"
+        }
+      }
+    },
+    "SurfaceType" : {
+      "id" : "SurfaceType",
+      "properties" : {
+        "uniqueID" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "desc" : {
+          "type" : "string"
+        },
+        "next" : {
+          "type" : "SurfaceType"
+        },
+        "pixelConverter" : {
+          "type" : "PixelConverter"
+        },
+        "descriptor" : {
+          "type" : "string"
+        },
+        "superType" : {
+          "type" : "SurfaceType"
+        },
+        "alphaMask" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "MouseInfoPeer" : {
+      "id" : "MouseInfoPeer",
+      "properties" : {
+        "windowUnderMouse" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "MostRecentKeyValue" : {
+      "id" : "MostRecentKeyValue",
+      "properties" : {
+        "key" : {
+          "type" : "Object"
+        },
+        "value" : {
+          "type" : "Object"
+        }
+      }
+    },
+    "CountDownLatch-Sync" : {
+      "id" : "CountDownLatch-Sync",
+      "properties" : {
+        "state" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "heldExclusively" : {
+          "type" : "boolean"
+        },
+        "firstQueuedThread" : {
+          "type" : "Thread"
+        },
+        "queued" : {
+          "type" : "boolean"
+        },
+        "queueLength" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "queuedThreads" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "Thread"
+          }
+        },
+        "exclusiveQueuedThreads" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "Thread"
+          }
+        },
+        "sharedQueuedThreads" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "Thread"
+          }
+        }
+      }
+    },
+    "ProtectionDomain-Key" : {
+      "id" : "ProtectionDomain-Key",
+      "properties" : { }
+    },
+    "DropTarget" : {
+      "id" : "DropTarget",
+      "properties" : {
+        "dropTargetContext" : {
+          "type" : "DropTargetContext"
+        },
+        "component" : {
+          "type" : "Component"
+        },
+        "actions" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "active" : {
+          "type" : "boolean"
+        },
+        "defaultActions" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "FontRenderContext" : {
+      "id" : "FontRenderContext",
+      "properties" : {
+        "transformed" : {
+          "type" : "boolean"
+        },
+        "transformType" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "transform" : {
+          "type" : "AffineTransform"
+        },
+        "antiAliased" : {
+          "type" : "boolean"
+        },
+        "antiAliasingHint" : {
+          "type" : "Object"
+        },
+        "fractionalMetricsHint" : {
+          "type" : "Object"
+        }
+      }
+    },
+    "SliceBuildConfig" : {
+      "id" : "SliceBuildConfig",
+      "properties" : {
+        "BlankTime" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "PlatformTemp" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "ExportSVG" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "Export" : {
+          "type" : "boolean"
+        },
+        "ExportPNG" : {
+          "type" : "boolean"
+        },
+        "XOffset" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "YOffset" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "AntiAliasing" : {
+          "type" : "boolean"
+        },
+        "UseMainLiftGCode" : {
+          "type" : "boolean"
+        },
+        "AntiAliasingValue" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "LiftRetractRate" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "ExportOption" : {
+          "type" : "string",
+          "enum" : [ "ZIP" ]
+        },
+        "gCodeHeader" : {
+          "type" : "string"
+        },
+        "gCodeFooter" : {
+          "type" : "string"
+        },
+        "gCodePreslice" : {
+          "type" : "string"
+        },
+        "gCodeLift" : {
+          "type" : "string"
+        },
+        "zLiftSpeedGCode" : {
+          "type" : "string"
+        },
+        "zLiftDistanceGCode" : {
+          "type" : "string"
+        },
+        "gCodeShutter" : {
+          "type" : "string"
+        },
+        "SelectedInk" : {
+          "type" : "string"
+        },
+        "MinTestExposure" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "TestExposureStep" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "InkConfig" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "SlicingProfile-InkConfig"
+          }
+        }
+      }
+    },
+    "PopupMenu" : {
+      "id" : "PopupMenu",
+      "properties" : {
+        "font" : {
+          "type" : "Font"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "nameExplicitlySet" : {
+          "type" : "boolean"
+        },
+        "newEventsOnly" : {
+          "type" : "boolean"
+        },
+        "accessibleContext" : {
+          "type" : "AccessibleContext"
+        },
+        "treeLock" : {
+          "type" : "Object"
+        },
+        "enabled" : {
+          "type" : "boolean"
+        },
+        "label" : {
+          "type" : "string"
+        },
+        "actionCommand" : {
+          "type" : "string"
+        },
+        "eventMask" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "shortcut" : {
+          "type" : "MenuShortcut"
+        },
+        "menuItemSerializedDataVersion" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "actionListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "ActionListener"
+          }
+        },
+        "items" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "MenuComponent"
+          }
+        },
+        "tearOff" : {
+          "type" : "boolean"
+        },
+        "isHelpMenu" : {
+          "type" : "boolean"
+        },
+        "menuSerializedDataVersion" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "itemCount" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "parent" : {
+          "type" : "MenuContainer"
+        }
+      }
+    },
+    "BufferCapabilities-FlipContents" : {
+      "id" : "BufferCapabilities-FlipContents",
+      "properties" : {
+        "value" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "names" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "PermissionCollection" : {
+      "id" : "PermissionCollection",
+      "properties" : {
+        "readOnly" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "OffScreenImageSource" : {
+      "id" : "OffScreenImageSource",
+      "properties" : {
+        "image" : {
+          "type" : "BufferedImage"
+        },
+        "width" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "height" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "properties" : {
+          "type" : "Hashtable"
+        },
+        "theConsumer" : {
+          "type" : "ImageConsumer"
+        },
+        "consumer" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "Insets" : {
+      "id" : "Insets",
+      "properties" : {
+        "top" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "left" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "bottom" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "right" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "PrintFileProcessor" : {
+      "id" : "PrintFileProcessor",
+      "properties" : {
+        "fileExtensions" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "friendlyName" : {
+          "type" : "string"
+        }
+      }
+    },
+    "MachineConfig-DisplayedControls" : {
+      "id" : "MachineConfig-DisplayedControls",
+      "properties" : { }
+    },
+    "MenuBar" : {
+      "id" : "MenuBar",
+      "properties" : {
+        "font" : {
+          "type" : "Font"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "nameExplicitlySet" : {
+          "type" : "boolean"
+        },
+        "newEventsOnly" : {
+          "type" : "boolean"
+        },
+        "accessibleContext" : {
+          "type" : "AccessibleContext"
+        },
+        "treeLock" : {
+          "type" : "Object"
+        },
+        "menus" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "Menu"
+          }
+        },
+        "helpMenu" : {
+          "type" : "Menu"
+        },
+        "menuBarSerializedDataVersion" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "menuCount" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "ReentrantLock-Sync" : {
+      "id" : "ReentrantLock-Sync",
+      "properties" : {
+        "state" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "heldExclusively" : {
+          "type" : "boolean"
+        },
+        "firstQueuedThread" : {
+          "type" : "Thread"
+        },
+        "queued" : {
+          "type" : "boolean"
+        },
+        "queueLength" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "queuedThreads" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "Thread"
+          }
+        },
+        "exclusiveQueuedThreads" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "Thread"
+          }
+        },
+        "sharedQueuedThreads" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "Thread"
+          }
+        }
+      }
+    },
+    "BufferedImage" : {
+      "id" : "BufferedImage",
+      "properties" : {
+        "accelerationPriority" : {
+          "type" : "number",
+          "format" : "float"
+        },
+        "surfaceManager" : {
+          "type" : "SurfaceManager"
+        },
+        "source" : {
+          "type" : "ImageProducer"
+        },
+        "graphics" : {
+          "type" : "Graphics"
+        },
+        "imageType" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "colorModel" : {
+          "type" : "ColorModel"
+        },
+        "raster" : {
+          "type" : "WritableRaster"
+        },
+        "osis" : {
+          "type" : "OffScreenImageSource"
+        },
+        "properties" : {
+          "type" : "Hashtable"
+        },
+        "type" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "alphaRaster" : {
+          "type" : "WritableRaster"
+        },
+        "rGB" : {
+          "type" : "void"
+        },
+        "width" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "height" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "alphaPremultiplied" : {
+          "type" : "boolean"
+        },
+        "sources" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "RenderedImage"
+          }
+        },
+        "propertyNames" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "minX" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "minY" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "sampleModel" : {
+          "type" : "SampleModel"
+        },
+        "numXTiles" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "numYTiles" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "minTileX" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "minTileY" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "tileWidth" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "tileHeight" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "tileGridXOffset" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "tileGridYOffset" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "data" : {
+          "type" : "Raster"
+        },
+        "tileWritable" : {
+          "type" : "boolean"
+        },
+        "writableTileIndices" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "Point"
+          }
+        },
+        "transparency" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "LightweightDispatcher" : {
+      "id" : "LightweightDispatcher",
+      "properties" : {
+        "nativeContainer" : {
+          "type" : "Container"
+        },
+        "focus" : {
+          "type" : "Component"
+        },
+        "nativeCursor" : {
+          "type" : "Cursor"
+        },
+        "eventMask" : {
+          "type" : "integer",
+          "format" : "int64"
+        }
+      }
+    },
+    "WritableRaster" : {
+      "id" : "WritableRaster",
+      "properties" : {
+        "sampleModel" : {
+          "type" : "SampleModel"
+        },
+        "dataBuffer" : {
+          "type" : "DataBuffer"
+        },
+        "minX" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "minY" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "width" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "height" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "sampleModelTranslateX" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "sampleModelTranslateY" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "numBands" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "numDataElements" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "parent" : {
+          "type" : "Raster"
+        },
+        "bounds" : {
+          "type" : "Rectangle"
+        },
+        "transferType" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "writableParent" : {
+          "type" : "WritableRaster"
+        },
+        "dataElements" : {
+          "type" : "void"
+        },
+        "rect" : {
+          "type" : "void"
+        },
+        "pixel" : {
+          "type" : "void"
+        },
+        "pixels" : {
+          "type" : "void"
+        },
+        "sample" : {
+          "type" : "void"
+        },
+        "samples" : {
+          "type" : "void"
+        }
+      }
+    },
+    "ImageProducer" : {
+      "id" : "ImageProducer",
+      "properties" : {
+        "consumer" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "ClassLoader" : {
+      "id" : "ClassLoader",
+      "properties" : {
+        "parent" : {
+          "type" : "ClassLoader"
+        },
+        "parallelLockMap" : {
+          "type" : "ConcurrentHashMap"
+        },
+        "package2certs" : {
+          "type" : "Map"
+        },
+        "classes" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "Class"
+          }
+        },
+        "defaultDomain" : {
+          "type" : "ProtectionDomain"
+        },
+        "domains" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "ProtectionDomain"
+          },
+          "uniqueItems" : true
+        },
+        "packages" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "Package"
+          }
+        },
+        "nativeLibraries" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "ClassLoader-NativeLibrary"
+          }
+        },
+        "assertionLock" : {
+          "type" : "Object"
+        },
+        "defaultAssertionStatus" : {
+          "type" : "boolean"
+        },
+        "packageAssertionStatus" : {
+          "type" : "Map"
+        },
+        "classAssertionStatus" : {
+          "type" : "Map"
+        },
+        "signers" : {
+          "type" : "void"
+        }
+      }
+    },
+    "Component" : {
+      "id" : "Component",
+      "properties" : {
+        "x" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "y" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "width" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "height" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "foreground" : {
+          "type" : "Color"
+        },
+        "background" : {
+          "type" : "Color"
+        },
+        "font" : {
+          "type" : "Font"
+        },
+        "peerFont" : {
+          "type" : "Font"
+        },
+        "cursor" : {
+          "type" : "Cursor"
+        },
+        "locale" : {
+          "type" : "Locale"
+        },
+        "ignoreRepaint" : {
+          "type" : "boolean"
+        },
+        "visible" : {
+          "type" : "boolean"
+        },
+        "enabled" : {
+          "type" : "boolean"
+        },
+        "valid" : {
+          "type" : "boolean"
+        },
+        "dropTarget" : {
+          "type" : "DropTarget"
+        },
+        "popups" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "PopupMenu"
+          }
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "nameExplicitlySet" : {
+          "type" : "boolean"
+        },
+        "focusable" : {
+          "type" : "boolean"
+        },
+        "isFocusTraversableOverridden" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "focusTraversalKeys" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "array"
+          },
+          "uniqueItems" : true
+        },
+        "focusTraversalKeysEnabled" : {
+          "type" : "boolean"
+        },
+        "minSize" : {
+          "type" : "Dimension"
+        },
+        "minSizeSet" : {
+          "type" : "boolean"
+        },
+        "prefSize" : {
+          "type" : "Dimension"
+        },
+        "prefSizeSet" : {
+          "type" : "boolean"
+        },
+        "maxSize" : {
+          "type" : "Dimension"
+        },
+        "maxSizeSet" : {
+          "type" : "boolean"
+        },
+        "newEventsOnly" : {
+          "type" : "boolean"
+        },
+        "eventMask" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "changeSupport" : {
+          "type" : "PropertyChangeSupport"
+        },
+        "isPacked" : {
+          "type" : "boolean"
+        },
+        "boundsOp" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "autoFocusTransferOnDisposal" : {
+          "type" : "boolean"
+        },
+        "componentSerializedDataVersion" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "accessibleContext" : {
+          "type" : "AccessibleContext"
+        },
+        "graphicsConfiguration" : {
+          "type" : "GraphicsConfiguration"
+        },
+        "treeLock" : {
+          "type" : "Object"
+        },
+        "toolkit" : {
+          "type" : "Toolkit"
+        },
+        "displayable" : {
+          "type" : "boolean"
+        },
+        "mousePosition" : {
+          "type" : "Point"
+        },
+        "showing" : {
+          "type" : "boolean"
+        },
+        "doubleBuffered" : {
+          "type" : "boolean"
+        },
+        "foregroundSet" : {
+          "type" : "boolean"
+        },
+        "backgroundSet" : {
+          "type" : "boolean"
+        },
+        "fontSet" : {
+          "type" : "boolean"
+        },
+        "colorModel" : {
+          "type" : "ColorModel"
+        },
+        "location" : {
+          "type" : "Point"
+        },
+        "locationOnScreen" : {
+          "type" : "Point"
+        },
+        "size" : {
+          "type" : "Dimension"
+        },
+        "bounds" : {
+          "type" : "Rectangle"
+        },
+        "opaque" : {
+          "type" : "boolean"
+        },
+        "lightweight" : {
+          "type" : "boolean"
+        },
+        "preferredSize" : {
+          "type" : "Dimension"
+        },
+        "preferredSizeSet" : {
+          "type" : "boolean"
+        },
+        "minimumSize" : {
+          "type" : "Dimension"
+        },
+        "minimumSizeSet" : {
+          "type" : "boolean"
+        },
+        "maximumSize" : {
+          "type" : "Dimension"
+        },
+        "maximumSizeSet" : {
+          "type" : "boolean"
+        },
+        "alignmentX" : {
+          "type" : "number",
+          "format" : "float"
+        },
+        "alignmentY" : {
+          "type" : "number",
+          "format" : "float"
+        },
+        "baselineResizeBehavior" : {
+          "type" : "string",
+          "enum" : [ "CONSTANT_ASCENT", "CONSTANT_DESCENT", "CENTER_OFFSET", "OTHER" ]
+        },
+        "graphics" : {
+          "type" : "Graphics"
+        },
+        "cursorSet" : {
+          "type" : "boolean"
+        },
+        "componentListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "ComponentListener"
+          }
+        },
+        "focusListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "FocusListener"
+          }
+        },
+        "hierarchyListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "HierarchyListener"
+          }
+        },
+        "hierarchyBoundsListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "HierarchyBoundsListener"
+          }
+        },
+        "keyListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "KeyListener"
+          }
+        },
+        "mouseListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "MouseListener"
+          }
+        },
+        "mouseMotionListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "MouseMotionListener"
+          }
+        },
+        "mouseWheelListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "MouseWheelListener"
+          }
+        },
+        "inputMethodListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "InputMethodListener"
+          }
+        },
+        "inputMethodRequests" : {
+          "type" : "InputMethodRequests"
+        },
+        "inputContext" : {
+          "type" : "InputContext"
+        },
+        "focusCycleRootAncestor" : {
+          "type" : "Container"
+        },
+        "focusCycleRoot" : {
+          "type" : "boolean"
+        },
+        "focusOwner" : {
+          "type" : "boolean"
+        },
+        "propertyChangeListeners" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "PropertyChangeListener"
+          }
+        }
+      }
+    },
+    "Toolkit-SelectiveAWTEventListener" : {
+      "id" : "Toolkit-SelectiveAWTEventListener",
+      "properties" : {
+        "listener" : {
+          "type" : "AWTEventListener"
+        },
+        "eventMask" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "calls" : {
+          "type" : "array",
+          "items" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }
+      }
+    },
+    "AWTKeyStroke" : {
+      "id" : "AWTKeyStroke",
+      "properties" : {
+        "keyChar" : {
+          "type" : "string"
+        },
+        "keyCode" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "modifiers" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "onKeyRelease" : {
+          "type" : "boolean"
+        },
+        "keyEventType" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "DropTargetContext" : {
+      "id" : "DropTargetContext",
+      "properties" : {
+        "dropTarget" : {
+          "type" : "DropTarget"
+        },
+        "component" : {
+          "type" : "Component"
+        },
+        "targetActions" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "currentDataFlavors" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "DataFlavor"
+          }
+        },
+        "currentDataFlavorsAsList" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "DataFlavor"
+          }
+        },
+        "dataFlavorSupported" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "Raster" : {
+      "id" : "Raster",
+      "properties" : {
+        "sampleModel" : {
+          "type" : "SampleModel"
+        },
+        "dataBuffer" : {
+          "type" : "DataBuffer"
+        },
+        "minX" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "minY" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "width" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "height" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "sampleModelTranslateX" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "sampleModelTranslateY" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "numBands" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "numDataElements" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "parent" : {
+          "type" : "Raster"
+        },
+        "bounds" : {
+          "type" : "Rectangle"
+        },
+        "transferType" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "ClassLoader-NativeLibrary" : {
+      "id" : "ClassLoader-NativeLibrary",
+      "properties" : {
+        "handle" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "jniVersion" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "fromClass" : {
+          "type" : "Class"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "isBuiltin" : {
+          "type" : "boolean"
+        },
+        "loaded" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "Transferable" : {
+      "id" : "Transferable",
+      "properties" : {
+        "transferDataFlavors" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "DataFlavor"
+          }
+        },
+        "dataFlavorSupported" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "InputContext" : {
+      "id" : "InputContext",
+      "properties" : {
+        "locale" : {
+          "type" : "Locale"
+        },
+        "characterSubsets" : {
+          "type" : "void"
+        },
+        "compositionEnabled" : {
+          "type" : "void"
+        },
+        "inputMethodControlObject" : {
+          "type" : "Object"
+        }
+      }
+    },
+    "Map-Entry" : {
+      "id" : "Map-Entry",
+      "properties" : {
+        "key" : {
+          "type" : "string"
+        },
+        "value" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "L"
+          }
+        }
+      }
+    },
+    "Point" : {
+      "id" : "Point",
+      "properties" : {
+        "x" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "y" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "location" : {
+          "type" : "Point"
+        }
+      }
+    },
+    "CountDownLatch" : {
+      "id" : "CountDownLatch",
+      "properties" : {
+        "sync" : {
+          "type" : "CountDownLatch-Sync"
+        },
+        "count" : {
+          "type" : "integer",
+          "format" : "int64"
+        }
+      }
+    },
+    "DisplayMode" : {
+      "id" : "DisplayMode",
+      "properties" : {
+        "size" : {
+          "type" : "Dimension"
+        },
+        "bitDepth" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "refreshRate" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "height" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "width" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "SampleModel" : {
+      "id" : "SampleModel",
+      "properties" : {
+        "width" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "height" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "numBands" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "dataType" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "numDataElements" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "transferType" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "dataElements" : {
+          "type" : "void"
+        },
+        "pixel" : {
+          "type" : "void"
+        },
+        "pixels" : {
+          "type" : "void"
+        },
+        "sample" : {
+          "type" : "void"
+        },
+        "samples" : {
+          "type" : "void"
+        },
+        "sampleSize" : {
+          "type" : "array",
+          "items" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }
+      }
+    },
+    "BufferCapabilities" : {
+      "id" : "BufferCapabilities",
+      "properties" : {
+        "frontCaps" : {
+          "type" : "ImageCapabilities"
+        },
+        "backCaps" : {
+          "type" : "ImageCapabilities"
+        },
+        "flipContents" : {
+          "type" : "BufferCapabilities-FlipContents"
+        },
+        "frontBufferCapabilities" : {
+          "type" : "ImageCapabilities"
+        },
+        "backBufferCapabilities" : {
+          "type" : "ImageCapabilities"
+        },
+        "pageFlipping" : {
+          "type" : "boolean"
+        },
+        "fullScreenRequired" : {
+          "type" : "boolean"
+        },
+        "multiBufferAvailable" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "PixelConverter" : {
+      "id" : "PixelConverter",
+      "properties" : {
+        "alphaMask" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "StateTracker" : {
+      "id" : "StateTracker",
+      "properties" : {
+        "current" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "Future" : {
+      "id" : "Future",
+      "properties" : {
+        "cancelled" : {
+          "type" : "boolean"
+        },
+        "done" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "StateTrackableDelegate" : {
+      "id" : "StateTrackableDelegate",
+      "properties" : {
+        "theState" : {
+          "type" : "string",
+          "enum" : [ "IMMUTABLE", "STABLE", "DYNAMIC", "UNTRACKABLE" ]
+        },
+        "theTracker" : {
+          "type" : "StateTracker"
+        },
+        "numDynamicAgents" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "state" : {
+          "type" : "string",
+          "enum" : [ "IMMUTABLE", "STABLE", "DYNAMIC", "UNTRACKABLE" ]
+        },
+        "stateTracker" : {
+          "type" : "StateTracker"
+        },
+        "immutable" : {
+          "type" : "void"
+        },
+        "untrackable" : {
+          "type" : "void"
+        }
+      }
+    }
+  }
+}

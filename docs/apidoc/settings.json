@@ -1,0 +1,126 @@
+{
+  "apiVersion" : "1",
+  "swaggerVersion" : "1.2",
+  "basePath" : "/services",
+  "resourcePath" : "/settings",
+  "apis" : [ {
+    "path" : "/settings/emailSettings",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "getEmailSettings",
+      "type" : "CwhEmailSettings",
+      "produces" : [ "application/json" ]
+    }, {
+      "method" : "PUT",
+      "nickname" : "setEmailSettings",
+      "type" : "void",
+      "parameters" : [ {
+        "type" : "CwhEmailSettings",
+        "paramType" : "body",
+        "name" : "settings",
+        "required" : true
+      } ],
+      "consumes" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/settings/hostInformation",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "getHostInformation",
+      "type" : "HostInformation",
+      "produces" : [ "application/json" ]
+    }, {
+      "method" : "PUT",
+      "nickname" : "setHostInformation",
+      "type" : "void",
+      "parameters" : [ {
+        "type" : "HostInformation",
+        "paramType" : "body",
+        "name" : "info",
+        "required" : true
+      } ]
+    } ]
+  }, {
+    "path" : "/settings/integerVersion",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "getIntegerVersion",
+      "type" : "integer",
+      "format" : "int32",
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/settings/printerProfileRepo",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "getPrinterProfileRepo",
+      "type" : "string",
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/settings/releaseTagName",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "getReleaseTagName",
+      "type" : "string",
+      "produces" : [ "application/json" ]
+    } ]
+  }, {
+    "path" : "/settings/visibleCards",
+    "operations" : [ {
+      "method" : "GET",
+      "nickname" : "getVisibleCards",
+      "type" : "array",
+      "items" : {
+        "type" : "string"
+      },
+      "produces" : [ "application/json" ]
+    } ]
+  } ],
+  "models" : {
+    "CwhEmailSettings" : {
+      "id" : "CwhEmailSettings",
+      "properties" : {
+        "smtpServer" : {
+          "type" : "string"
+        },
+        "smtpPort" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "userName" : {
+          "type" : "string"
+        },
+        "password" : {
+          "type" : "string"
+        },
+        "useTLS" : {
+          "type" : "boolean"
+        },
+        "notificationEmailAddresses" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "serviceEmailAddresses" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "HostInformation" : {
+      "id" : "HostInformation",
+      "properties" : {
+        "deviceName" : {
+          "type" : "string"
+        },
+        "manufacturer" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}
